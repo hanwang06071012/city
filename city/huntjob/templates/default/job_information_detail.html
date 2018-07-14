@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+<!-- Main content -->
+{% block main_conten %}
+<div class="container">
+    <!-- Main content -->
+        <section class="content">
+            <!-- 岗位标题栏 -->
+            <div class="callout callout-info">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div>
+                            <h4>{{ job_information.name }}&nbsp;&nbsp;&nbsp;<span class="badge">{{ job_information.work_place }}</span><span class="pull-right">{{ job_information.monthly_salary_range.name }}</span></h4>
+                        </div>
+                         <div>
+                              <span>{{ job_information.company_information.name }}</span>
+                              <span class="pull-right"><a href="">该公司所有职位</a></span>
+                         </div>
+                         <div>
+                             <span>{{ job_information.company_information.style.name }} | </span>
+                             <span>{{ job_information.company_information.scale.name }} | </span>
+                             <span>{{ job_information.company_information.industry.name }} </span>
+                         </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="text-center"><button class="btn btn-lg btn-danger">申请职位</button></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 职位标签栏 -->
+             <div class="row">
+                <div class="col-sm-9">
+                    <div class="">
+                        <button class="btn btn-info" disabled="true">{{ job_information.working_years.name }}</button>
+                        <button class="btn btn-info" disabled="true">{{ job_information.academic_requirements.name }}</button>
+                        <button class="btn btn-info" disabled="true">招{{ job_information.recruitment_number }}人</button>
+                        <button class="btn btn-info" disabled="true">{{ job_information.update_time |date:"m-d" }}发布</button>
+                    </div>
+                    <div class="" style="margin: 5px 0px;">
+                        {%  for job_salary_benefits_relationship_obj in job_salary_benefits_relationship_objs %}
+                            <button type="button" class="btn btn-warning" disabled="true">{{ job_salary_benefits_relationship_obj.salary_benefits.name }}</button>
+                        {% endfor %}
+                    </div>
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                          <i class="fa fa-bullhorn"></i>
+
+                          <h3 class="box-title">职位信息</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                          <div class="callout">
+                            <h4>岗位要求</h4>
+
+                            <textarea  class="btn-info" rows="20" cols="118" disabled readonly  style="resize:none">{{ job_information.job_responsibilities }}</textarea>
+                          </div>
+                          <div class="callout">
+                            <h4> 任职要求 </h4>
+                            <textarea  class="btn-info" rows="20" cols="118" disabled readonly  style="resize:none">{{ job_information.job_requirements }}</textarea>
+                          </div>
+                          <div class="callout callout-warning">
+                            <h4> 职能类别 </h4>
+                            {% for job_information_functions_relationship_obj in job_information_functions_relationship_objs %}
+                                <span>{{ job_information_functions_relationship_obj.job_functions.name }}</span>
+                            {% endfor %}
+                          </div>
+                          <div class="callout callout-success">
+                            <h4> 联系方式 </h4>
+
+                            <p>{{ job_information.company_information.address }}</p>
+                          </div>
+                          <div class="callout callout-warning">
+                            <h4> 公司信息 </h4>
+
+                            <p>{{ job_information.company_information.introduction }}</p>
+                          </div>
+                        </div>
+                        <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                </div>
+                <div class="col-sm-3" style="border: solid 1px red;">
+                    <div>
+                        <h4>相似职位推荐<button class="pull-right badge">换一换</button></h4>
+                    </div>
+                    {% for job_information_obj in job_information_objs %}
+                        <div class="box btn-warning">
+                            <table class="table table-hover">
+                              <tbody>
+                                <tr>
+                                  <td><span><a href="{% url 'huntjob:job_information_detail' job_information_obj.id %}">{{ job_information_obj.name }}</a></span></td>
+                                  <td><span class="pull-right">{{ job_information_obj.monthly_salary_range.name }}</span></td>
+                                </tr>
+                                <tr>
+                                  <td><span><a href="{% url 'huntjob:company_information_detail' job_information_obj.company_information.id %}">{{ job_information_obj.company_information.name }}</a></span></td>
+                                  <td><span class="pull-right">{{ job_information_obj.company_information.address }}</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    <!-- /.container -->
+</div>
+{% endblock %}
+<!-- /.content -->

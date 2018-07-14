@@ -1,0 +1,52 @@
+# -*- coding:utf-8 -*-
+"""数据库管理模块模型."""
+
+# =========================================================
+# 作者：韩望
+# 时间：2018-06-30
+# 功能：数据库基础信息模块
+# 版本: v 0.0.0.1_base
+# 公司：中化能源互联科技组
+# 更新：无
+# 备注：无
+# =========================================================
+# Create your models here.
+
+from django.db import models
+import django.utils.timezone as timezone
+
+
+class ReginoanlManagement(models.Model):
+    """中国区划管理模型."""
+
+    province = models.CharField("省", max_length=128, blank=False)
+    city = models.CharField("市区", max_length=128, blank=False)
+    county = models.CharField("区县", max_length=128, blank=False)
+    people = models.CharField("人口数量", max_length=128, blank=False)
+    description = models.TextField("描述", default=None)
+    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    update_time = models.DateTimeField("更新日期", auto_now=True)
+
+    class Meta:
+        app_label = 'huntjob'
+        verbose_name = "中国区划管理"
+        db_table = "reginoanl_management"
+        verbose_name_plural = verbose_name
+
+
+class ChineseUniversities(models.Model):
+    """中国全国高校模型."""
+
+    name = models.CharField("高校名称", max_length=128, blank=False)
+    competent_authority = models.CharField("管辖部门", max_length=128, blank=False)
+    location = models.CharField("所在地", max_length=128, blank=False)
+    style = models.CharField("办学类型", max_length=64, blank=False)
+    description = models.TextField("描述", default=None)
+    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    update_time = models.DateTimeField("更新日期", auto_now=True)
+
+    class Meta:
+        app_label = 'huntjob'
+        verbose_name = "中国全国高校"
+        db_table = "chinese_universities"
+        verbose_name_plural = verbose_name

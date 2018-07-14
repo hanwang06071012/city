@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+<!-- Main content -->
+{% block main_conten %}
+<div class="container">
+    <!-- Main content -->
+        <section class="content">
+            <!-- 岗位标题栏 -->
+            <div class="callout callout-info">
+                <div>
+                    <h4>{{ company_information.name }}&nbsp;&nbsp;&nbsp;<span class="pull-right">该公司所有职位</span></h4>
+                </div>
+                 <div>
+                      <span class="pull-right"><a href="">不让他看我简历</a></span>
+                 </div>
+                 <div>
+                     <span>{{ company_information.style.name }} | </span>
+                     <span>{{ company_information.scale.name }} | </span>
+                     <span>{{ company_information.industry.name }} </span>
+                 </div>
+            </div>
+            <div class="">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                      <i class="fa fa-bullhorn"></i>
+
+                      <h3 class="box-title">Callouts</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="callout callout-info">
+                            <h4>公司简介</h4>
+
+                            <p>{{ company_information.introduction }}</p>
+                        </div>
+                        <div class="callout callout-warning">
+                            <h4>公司地址</h4>
+
+                            <p>{{ company_information.address }}</p>
+                        </div>
+                        <div class="callout callout-success">
+                            <div>
+                                <h4>该公司所有职位
+                                    <span class="pull-right">
+                                        <input type="text" class="form-control" id="name" placeholder="请输入筛选职位">
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="">
+                                <table class="table table-hover table-bordered">
+                                    <tbody class="">
+                                        {% for job_information_obj in job_information_objs %}
+                                            <tr class="">
+                                                <td class="btn-info">
+                                                    <a class="" href="{% url 'huntjob:job_information_detail' job_information_obj.id %}">{{ job_information_obj.name }}</a>
+                                                </td>
+                                                <td class="btn-info">
+                                                    {{ job_information_obj.academic_requirements.name }} | {{ job_information_obj.recruitment_number }}人
+                                                </td>
+                                                <td class="text-center btn-info">{{ job_information_obj.work_place }}</td>
+                                                <td class="text-center btn-info">{{ job_information_obj.monthly_salary_range.name }}</td>
+                                                <td class="text-center btn-info">{{ job_information_obj.update_time }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->    
+        </section>
+    <!-- /.container -->
+</div>
+{% endblock %}
+<!-- /.content -->

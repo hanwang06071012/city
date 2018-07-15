@@ -14,3 +14,4 @@
 from .models_base_info import *
 from .models_company import *
 from .models_job import *
+from .models_user_management import *

@@ -16,7 +16,7 @@ from django.db import models
 import django.utils.timezone as timezone
 
 
-class AuthUser(models.Model):
+class CityAuthUser(models.Model):
     """用户管理模型."""
 
     password = models.CharField("用户密码", max_length=128, blank=False)
@@ -28,7 +28,7 @@ class AuthUser(models.Model):
     is_staff = models.BooleanField("是否在职", default=True)
     is_active = models.BooleanField("使用还是禁用", default=False)
     last_login = models.DateTimeField("最后登录日期")
-    date_joined = models.DateTimeField("入职日期"，default=timezone.now)
+    date_joined = models.DateTimeField("入职日期", default=timezone.now)
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -40,7 +40,7 @@ class AuthUser(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthGroup(models.Model):
+class CityAuthGroup(models.Model):
     """组管理."""
 
     name = models.CharField("组名", max_length=80, blank=False, unique=True)
@@ -55,7 +55,7 @@ class AuthGroup(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthRole(models.Model):
+class CityAuthRole(models.Model):
     """角色管理."""
 
     name = models.CharField("角色名", max_length=255)
@@ -70,7 +70,7 @@ class AuthRole(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthPermission(models.Model):
+class CityAuthPermission(models.Model):
     """权限管理."""
 
     name = models.CharField("权限名", max_length=255)
@@ -86,11 +86,11 @@ class AuthPermission(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthRolePermissionRelationship(models.Model):
+class CityAuthRolePermissionRelationship(models.Model):
     """角色与权限关系管理."""
 
-    role = models.ForeignKey(AuthRole, related_name="role_permission")
-    permission = models.ForeignKey(AuthPermission, related_name="permission_role")
+    role = models.ForeignKey(CityAuthRole, related_name="role_permission")
+    permission = models.ForeignKey(CityAuthPermission, related_name="permission_role")
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -102,11 +102,11 @@ class AuthRolePermissionRelationship(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthUserGroupRelationship(models.Model):
+class CityAuthUserGroupRelationship(models.Model):
     """用户与组关系管理."""
 
-    use = models.ForeignKey(AuthUser, related_name="user_group")
-    group = models.ForeignKey(AuthGroup, related_name="group_user")
+    use = models.ForeignKey(CityAuthUser, related_name="user_group")
+    group = models.ForeignKey(CityAuthGroup, related_name="group_user")
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -118,11 +118,11 @@ class AuthUserGroupRelationship(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthUserRoleRelationship(models.Model):
+class CityAuthUserRoleRelationship(models.Model):
     """用户与角色管理表."""
 
-    use = models.ForeignKey(AuthUser, related_name="user_role")
-    Role = models.ForeignKey(AuthRole, related_name="role_user")
+    use = models.ForeignKey(CityAuthUser, related_name="user_role")
+    Role = models.ForeignKey(CityAuthRole, related_name="role_user")
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -134,11 +134,11 @@ class AuthUserRoleRelationship(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AuthGroupRoleRelationship(models.Model):
+class CityAuthGroupRoleRelationship(models.Model):
     """组角色管理表."""
 
-    group = models.ForeignKey(AuthGroup, related_name="group_role")
-    Role = models.ForeignKey(AuthRole, related_name="role_group")
+    group = models.ForeignKey(CityAuthGroup, related_name="group_role")
+    Role = models.ForeignKey(CityAuthRole, related_name="role_group")
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)

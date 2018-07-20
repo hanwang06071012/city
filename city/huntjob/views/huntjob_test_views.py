@@ -22,7 +22,7 @@ from django.views.generic import View
 class HuntJobTestView(View):
     """测试"""
 
-    template_name = "index.html"
+    template_name = "test.html"
 
     def get(self, request, *args, **kwargs):
         """测试代码"""

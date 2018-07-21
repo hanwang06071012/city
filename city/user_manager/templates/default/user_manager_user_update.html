@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'usermanagerdefault:user_manager_user_update' id %}" method="POST">{% csrf_token %}
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="username" style="width:100%" data-options="label:'用户名:',required:true" value="{{ user_manager_user_obj.username }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="password" style="width:100%" data-options="label:'密码:',required:true" value="{{ user_manager_user_obj.password }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="first_name" style="width:100%" data-options="label:'姓:',required:true" value="{{ user_manager_user_obj.first_name }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="last_name" style="width:100%" data-options="label:'名:',required:true" value="{{ user_manager_user_obj.last_name }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="email" style="width:100%" data-options="label:'邮箱:',required:true,validType:'email'" value="{{ user_manager_user_obj.email }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="phone" style="width:100%" data-options="label:'手机:',required:true,validType:'phone'" value="{{ user_manager_user_obj.phone }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="qq" style="width:100%" data-options="label:'QQ:',required:true" value="{{ user_manager_user_obj.qq }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="is_superuser" label="超级管理员" style="width:100%">
+          {% ifequal is_superuser '0' %}
+          <option value="0" checked>否</option>
+          <option value="1">是</option>
+          {% else %}
+          <option value="0">否</option>
+          <option value="1" checked>是</option>
+          {% endifequal %}
+        </select>
+      </div>
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="is_staff" label="在职状态" style="width:100%">
+          {% ifequal is_staff 0 %}
+          <option value="0" checked>在职</option>
+          <option value="1">离职</option>
+          {% else %}
+          <option value="0">在职</option>
+          <option value="1" checked>离职</option>
+          {% endifequal %}
+        </select>
+      </div>
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="is_active" label="状态" style="width:100%">
+          {% ifequal is_active 0 %}
+          <option value="0" checked>激活</option>
+          <option value="1">禁用</option>
+          {% else %}
+          <option value="0">激活</option>
+          <option value="1" checked>禁用</option>
+          {% endifequal  %}
+        </select>
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-datetimebox" name="date_joined" label="入职日期:" labelPosition="left"  style="width:100%;" value="{{ user_manager_user_obj.date_joined }}">
+      </div>
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" style="width:100%;height:60px" data-options="label:'描述:',multiline:true" value="{{ user_manager_user_obj.description }}">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

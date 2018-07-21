@@ -13,13 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
-from django.contrib import admin
-from .views import HomeView
+from django.conf.urls import url
+from user_manager.views import UserManagerUserListView, UserManagerUserCreateView
+from user_manager.views import UserManagerUserDetailView, UserManagerUserUpdateView
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
-    url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^huntjob/', include("huntjob.urls.urls_huntjob", namespace="huntjob")),
-    url(r'^manager/', include("user_manager.urls.urls_default", namespace="usermanagerdefault")),
+    url(r'^user/list/', UserManagerUserListView.as_view(), name='user_manager_user_list'),
+    url(r'^user/create/', UserManagerUserCreateView.as_view(), name='user_manager_user_create'),
+    url(r'^user/(?P<id>[a-z-\d]+)/detail/$', UserManagerUserDetailView.as_view(), name='user_manager_user_detail'),
+    url(r'^user/(?P<id>[a-z-\d]+)/update/$', UserManagerUserUpdateView.as_view(), name='user_manager_user_update'),
 ]

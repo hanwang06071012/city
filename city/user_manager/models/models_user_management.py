@@ -25,6 +25,8 @@ class CityAuthUser(models.Model):
     first_name = models.CharField("姓", max_length=30, blank=False)
     last_name = models.CharField("名", max_length=30, blank=False)
     email = models.CharField("邮件", max_length=254, blank=False)
+    phone = models.CharField("手机", max_length=11, blank=False)
+    qq = models.CharField("QQ", max_length=13, blank=False)
     is_staff = models.BooleanField("是否在职", default=True)
     is_active = models.BooleanField("使用还是禁用", default=False)
     last_login = models.DateTimeField("最后登录日期")
@@ -34,6 +36,8 @@ class CityAuthUser(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "用户管理"
         db_table = "city_auth_user"
@@ -49,6 +53,8 @@ class CityAuthGroup(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "组管理"
         db_table = "city_auth_group"
@@ -64,6 +70,8 @@ class CityAuthRole(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "角色管理"
         db_table = "city_auth_Role"
@@ -80,6 +88,8 @@ class CityAuthPermission(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "角色管理"
         db_table = "city_auth_permission"
@@ -96,6 +106,8 @@ class CityAuthRolePermissionRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "角色与权限关系管理"
         db_table = "city_auth_role_permission_relationship"
@@ -112,6 +124,8 @@ class CityAuthUserGroupRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "用户与组关系管理"
         db_table = "city_auth_user_group_relationship"
@@ -128,6 +142,8 @@ class CityAuthUserRoleRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "用户与角色管理表"
         db_table = "city_auth_user_role_relationship"
@@ -144,6 +160,8 @@ class CityAuthGroupRoleRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "组与角色管理表"
         db_table = "city_auth_group_role_relationship"

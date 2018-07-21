@@ -1,0 +1,99 @@
+<div class="">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-bordered table-hover" role="grid">
+          <thead>
+              <th class="text-center">项目</th>
+              <th class="text-center">数据</th>
+          </thead>
+          <tbody>
+            <!-- 用户名username -->
+            <tr>
+                <td class="text-center" style="width:200px"> 用户名 </td>
+                <td class="text-center">{{ user_manager_user_obj.username }}</td>
+            </tr>
+            <!-- 是否是超级管理员 is_superuser-->
+            <tr>
+                <td class="text-center" style="width:200px"> 超级管理员 </td>
+                {% if user_manager_user_obj.is_superuser != '0' %}
+                    <td class="text-center">是</td>
+                {% else %}
+                    <td class="text-center">否</td>
+                {% endif %}
+            </tr>
+            <!-- 姓 first_name-->
+            <tr>
+                <td class="text-center" style="width:200px"> 姓 </td>
+                <td class="text-center">{{ user_manager_user_obj.first_name }}</td>
+            </tr>
+            <!-- 名 last_name-->
+            <tr>
+                <td class="text-center" style="width:200px"> 名 </td>
+                <td class="text-center">{{ user_manager_user_obj.last_name }}</td>
+            </tr>
+            <!-- 邮箱 email-->
+            <tr>
+                <td class="text-center" style="width:200px"> 邮箱 </td>
+                <td class="text-center">{{ user_manager_user_obj.email }}</td>
+            </tr>
+            <!-- 电话 phone-->
+            <tr>
+                <td class="text-center" style="width:200px"> 电话 </td>
+                <td class="text-center">{{ user_manager_user_obj.phone }}</td>
+            </tr>
+            <!-- QQ qq-->
+            <tr>
+                <td class="text-center" style="width:200px"> QQ </td>
+                <td class="text-center">{{ user_manager_user_obj.qq }}</td>
+            </tr>
+            <!-- 是否在职 is_staff-->
+            <tr>
+                <td class="text-center" style="width:200px"> 在职 </td>
+                {% if user_manager_user_obj.is_staff != '0' %}
+                    <td class="text-center">是</td>
+                {% else %}
+                    <td class="text-center">否</td>
+                {% endif %}
+            </tr>
+            <!-- 使用状态 is_active-->
+            <tr>
+                <td class="text-center" style="width:200px"> 状态 </td>
+                {% if user_manager_user_obj.is_active != '0' %}
+                    <td class="text-center">使用</td>
+                {% else %}
+                    <td class="text-center">禁用</td>
+                {% endif %}
+            </tr>
+            <!-- 最后登陆时间 last_login-->
+            <tr>
+                <td class="text-center" style="width:200px"> 最后登陆时间 </td>
+                <td class="text-center">{{ user_manager_user_obj.last_login }}</td>
+            </tr>
+            <!-- 入职时间 date_joined-->
+            <tr>
+                <td class="text-center" style="width:200px"> 入职时间 </td>
+                <td class="text-center">{{ user_manager_user_obj.date_joined }}</td>
+            </tr>
+            <!-- 描述 description-->
+            <tr>
+                <td class="text-center" style="width:200px"> 描述 </td>
+                <td class="text-center">{{ user_manager_user_obj.description }}</td>
+            </tr>
+            <!-- 创建时间 create_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 创建时间 </td>
+                <td class="text-center">{{ user_manager_user_obj.create_time }}</td>
+            </tr>
+            <!-- 更新时间 update_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 更新时间 </td>
+                <td class="text-center">{{ user_manager_user_obj.update_time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

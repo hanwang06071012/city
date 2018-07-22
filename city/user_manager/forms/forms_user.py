@@ -30,4 +30,4 @@ class UserCreateForm(forms.ModelForm):
         """定义规则字段."""
 
         model = CityAuthUser
-        fields = ('username', 'password', 'is_superuser', 'first_name', 'last_name', 'email','phone', 'qq', 'is_staff', 'is_active', 'date_joined', 'description')
+        fields = ('username', 'password', 'is_superuser', 'first_name', 'last_name', 'email', 'phone', 'qq', 'is_staff', 'is_active', 'date_joined', 'description')

@@ -22,10 +22,10 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from user_manager.models import CityAuthUser
 from user_manager.forms import UserCreateForm
-from utils import EasyAndDateTimeConversion
+from utils.common_lib import EasyAndDateTimeConversion
 from django.db.models import Q
 from django.core.urlresolvers import reverse_lazy
-from utils import CommonMixin
+from utils.common_lib import CommonMixin
 import time
 
 
@@ -70,14 +70,14 @@ class UserManagerUserCreateView(CommonMixin, CreateView):
     def post(self, request, *args, **kwargs):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        is_superuser = request.POST.get('is_superuser', '')
+        is_superuser = int(request.POST.get('is_superuser', '0'))
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
         email = request.POST.get('email', '')
         phone = request.POST.get('phone', '')
         qq = request.POST.get('qq', '')
-        is_staff = request.POST.get('is_staff', '')
-        is_active = request.POST.get('is_active', '')
+        is_staff = int(request.POST.get('is_staff', '0'))
+        is_active = int(request.POST.get('is_active', '0'))
         date_joined = request.POST.get('date_joined', '')
         date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
         description = request.POST.get('description', '')
@@ -105,30 +105,25 @@ class UserManagerUserUpdateView(CommonMixin, View):
     success_url = reverse_lazy('usermanagerdefault:user_manager_user_list')
 
     def get(self, request, *args, **kwargs):
-        print("========get start========================")
         id = self.kwargs.get('id')
         user_manager_user_obj = CityAuthUser.objects.filter(id=id).first()
-        print("========get end=============================")
         return render(request, self.template_name, locals())
 
     def post(self, request, *args, **kwargs):
-        print("========post start========================")
         id = self.kwargs.get('id')
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        is_superuser = request.POST.get('is_superuser', '')
+        is_superuser = int(request.POST.get('is_superuser', '0'))
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
         email = request.POST.get('email', '')
         phone = request.POST.get('phone', '')
         qq = request.POST.get('qq', '')
-        is_staff = request.POST.get('is_staff', '')
-        is_active = request.POST.get('is_active', '')
+        is_staff = int(request.POST.get('is_staff', '0'))
+        is_active = int(request.POST.get('is_active', ''))
         date_joined = request.POST.get('date_joined', '')
         date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
         description = request.POST.get('description', '')
         last_login = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         CityAuthUser.objects.filter(id=id).update(username=username, password=password, is_superuser=is_superuser, first_name=first_name, last_name=last_name, email=email, phone=phone, qq=qq, is_staff=is_staff, is_active=is_active, date_joined=date_joined, description=description, last_login=last_login)
-        print(is_active)
-        print("========get end========================")
         return HttpResponseRedirect(self.success_url)

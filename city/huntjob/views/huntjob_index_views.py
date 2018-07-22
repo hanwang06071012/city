@@ -25,7 +25,7 @@ from huntjob.models import (
     CompanyInformation,
     )
 from django.db.models import Q
-from utils import CommonMixin
+from utils.common_lib import CommonMixin
 
 
 class HuntJobIndexListView(CommonMixin, ListView):

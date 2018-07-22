@@ -141,32 +141,3 @@ function test_db_connection()
             }
         });
 }
-
-//获取数据库实例中的所有数据库名称
-function get_db_names_from_instance()
-{
-    var token = getCookie('csrftoken');
-    var instance_id = $("#instance_id").val();
-    $("#id_bundle").empty();
-    $.post("/daas/community/get/db/names/from/instance/",
-        {
-            csrfmiddlewaretoken: token,
-            instance_id : instance_id,
-        },
-        function(data,status)
-        {
-            if (data.state)
-            {
-                layer.msg("数据库实例连通失败, " + data.msg, {icon: 1});
-            }
-            else
-            {
-                // layer.msg("数据库实例连通成功," + data.length, {icon: 1});
-                for ( db_name in data.db_names) {
-                    var db_name = db_name
-                    var str_option = "<option value='" + db_name +"'>" + db_name +"</option>"
-                    $("#id_bundle").append(str_option);
-                }
-            }
-        });
-}

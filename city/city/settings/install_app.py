@@ -18,4 +18,5 @@ from .base import *
 INSTALLED_APPS += [
     'huntjob',
     "user_manager",
+    "utils",
 ]

@@ -41,9 +41,9 @@
                 <td class="text-center">{{ public_resource_reginoanl_obj.update_time }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_update' public_resource_reginoanl_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'publicresourcedefault:public_resource_reginoanl_update' public_resource_reginoanl_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
                       <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' public_resource_reginoanl_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_detail' public_resource_reginoanl_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'publicresourcedefault:public_resource_reginoanl_detail' public_resource_reginoanl_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>
                 </td>
               </tr>
@@ -104,35 +104,13 @@ $(".btn-update").on('click', function(e) {
       });
 });
 
-//禁用激活办理
-$(".btn-active").on('click', function(e) {
-  e.preventDefault();
-  var url = $(this).attr('data-url');
-  var token = getCookie('csrftoken');
-  var active = $(this).text();
-  var dat_val = {}
-  if ("禁用"== active) {
-    dat_val = JSON.stringify({'is_active': 1,})
-  } else {
-    dat_val = JSON.stringify({'is_active': 0,})
-  }
-  var dat_obj = JSON.stringify({'tablename': 'group','types': 'update_active_group','colname': dat_val,})
-  ui.confirm('确定要进行组状态变更吗?', function() {
-      Net.post({
-          url: url,
-          data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
-          reload: true,
-      });
-      location.reload();
-  });
-});
-//删除用户办理
+//删除行政区划办理
 $(".btn-delete").on('click', function(e) {
   e.preventDefault();
   var url = $(this).attr('data-url');
   var token = getCookie('csrftoken');
-  var dat_obj = JSON.stringify({'tablename': 'group','types': 'delete_group',})
-  ui.confirm('确定要进行组删除操作吗?', function() {
+  var dat_obj = JSON.stringify({'tablename': 'reginoanlmanagment','types': 'delete_reginoanl',})
+  ui.confirm('确定要进行该行政区划删除操作吗?', function() {
       Net.post({
           url: url,
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},

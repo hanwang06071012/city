@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'publicresourcedefault:public_resource_reginoanl_update' pid %}" method="POST">{% csrf_token %}
+      <!-- 省 province -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="province" value="{{ public_resource_reginoanl_obj.province }}" style="width:100%" data-options="label:'省:',required:true">
+      </div>
+      <!-- 市 city -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="city" value="{{ public_resource_reginoanl_obj.city }}" style="width:100%" data-options="label:'市:',required:true">
+      </div>
+      <!-- 县 county -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="county" value="{{ public_resource_reginoanl_obj.county }}" style="width:100%" data-options="label:'县:',required:true">
+      </div>
+      <!-- 人口 people -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="people" value="{{ public_resource_reginoanl_obj.people }}" style="width:100%" data-options="label:'人口:',required:true">
+      </div>
+      <!-- 描述 description -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" value="{{ public_resource_reginoanl_obj.description }}" style="width:100%;height:60px" data-options="label:'描述:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

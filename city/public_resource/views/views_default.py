@@ -11,7 +11,9 @@
 # 备注：无
 # =========================================================
 # Create your models here.
+from django.views.generic.base import View
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from utils.common_lib import CommonMixin, LoginRequiredMixin
 from public_resource.models import ReginoanlManagement
@@ -20,6 +22,9 @@ from public_resource.forms import ReginoanlCreateForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+import logging
+
+_log = logging.getLogger(__name__)
 
 
 class PublicResourceReginoanlListView(LoginRequiredMixin, CommonMixin, ListView):
@@ -69,5 +74,42 @@ class PublicResourceReginoanlCreateView(LoginRequiredMixin, CommonMixin, CreateV
             description = request.POST.get('description', '')
             ReginoanlManagement.objects.create(province=province, city=city, county=county, people=people, description=description)
         except Exception as e:
-            raise e
+            _log.info(e)
         return HttpResponseRedirect(self.success_url)
+
+
+class PublicResourceReginoanlUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """行政区划更新."""
+
+    template_name = 'default/public_resource_reginoanl_update.html'
+    page_title = '行政区划更新'
+    success_url = reverse_lazy('publicresourcedefault:public_resource_reginoanl_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        public_resource_reginoanl_obj = ReginoanlManagement.objects.filter(id=pid).first()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            province = request.POST.get('province')
+            city = request.POST.get('city')
+            county = request.POST.get('county')
+            people = request.POST.get('people', '0')
+            description = request.POST.get('description', '')
+            ReginoanlManagement.objects.filter(id=pid).update(province=province, city=city, county=county, people=people, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class PublicResourceReginoanlDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """行政区划详情展示."""
+
+    model = ReginoanlManagement
+    page_title = '行政区划详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "default/public_resource_reginoanl_detail.html"
+    context_object_name = "public_resource_reginoanl_obj"

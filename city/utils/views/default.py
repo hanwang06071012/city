@@ -20,6 +20,9 @@ from user_manager.models import (
     CityAuthRole,
     CityAuthPermission,
 )
+from public_resource.models import(
+    ReginoanlManagement,
+)
 
 
 class CommonViewsUpdateView(View):
@@ -75,6 +78,8 @@ class CommonViewsDeleteView(View):
             CityAuthRole.objects.filter(id=id).delete()
         elif (tablename == "permission") and (types == "delete_permission"):
             CityAuthPermission.objects.filter(id=id).delete()
+        elif (tablename == "reginoanlmanagment") and (types == "delete_reginoanl"):
+            ReginoanlManagement.objects.filter(id=id).delete()
         else:
             pass
         return HttpResponse(json.dumps(ret))

@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^huntjob/', include("huntjob.urls.urls_huntjob", namespace="huntjob")),
     url(r'^manager/', include("user_manager.urls.urls_default", namespace="usermanagerdefault")),
     url(r'^utils/', include("utils.urls.urls_default", namespace="utilsdefault")),
+    url(r'^pulicresource/', include("public_resource.urls.urls_default", namespace="publicresourcedefault")),
 ]

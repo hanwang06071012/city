@@ -3,14 +3,14 @@
 <div class="box">
     <div class="box-header">
       <h1 class="box-title">{{ page_title }}</h1>
-      <a href="#" data-url="{% url 'usermanagerdefault:user_manager_group_create' %}" class="btn btn-add bg-purple btn-sm pull-right">创建组</a>
+      <a href="#" data-url="{% url 'publicresourcedefault:public_resource_reginoanl_create' %}" class="btn btn-add bg-purple btn-sm pull-right">新增地区</a>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
       <div class="well">
         <form class="form-inline">
           <div class="form-group">
-            <input class="form-control" name="name" type="text" value="{{ request.GET.name }}" placeholder="组姓名或者邮件">
+            <input class="form-control" name="name" type="text" value="{{ request.GET.name }}" placeholder="请输入省市县相关字">
           </div>
           <button id="search_btn" type="submit" class="btn btn-default">查询</button>
         </form>
@@ -21,36 +21,29 @@
           <table id="" class="table table-bordered table-hover" role="grid">
             <thead>
               <tr role="row">
-                <th class="text-center">组名</th>
-                <th class="text-center">状态</th>
+                <th class="text-center">省</th>
+                <th class="text-center">市</th>
+                <th class="text-center">县</th>
+                <th class="text-center">人口</th>
                 <th class="text-center">创建日期</th>
                 <th class="text-center">更新时间</th>
                 <th class="text-center">操作</th>
               </tr>
             </thead>
             <tbody>
-              {% for user_manager_group_obj in user_manager_group_objs %}
+              {% for public_resource_reginoanl_obj in public_resource_reginoanl_objs %}
               <tr role="row" class="odd">
-                <td class="text-center">{{ user_manager_group_obj.name }}</td>
-                {% if user_manager_group_obj.is_active %}
-                <td class="text-center danger">禁用</td>
-                {% else %}
-                <td class="text-center success">激活</td>
-                {% endif %}
-                <td class="text-center">{{ user_manager_group_obj.create_time }}</td>
-                <td class="text-center">{{ user_manager_group_obj.update_time }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.province }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.city }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.county }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.people }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.create_time }}</td>
+                <td class="text-center">{{ public_resource_reginoanl_obj.update_time }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                      <a href="#">
-                        {% ifequal user_manager_group_obj.is_active 0 %}
-                        <button type="button" data-url="{% url 'utilsdefault:common_views_update' user_manager_group_obj.id %}"  class="btn btn-active btn-danger btn-xs">禁用</button>
-                        {% else %}
-                        <button type="button" data-url="{% url 'utilsdefault:common_views_update' user_manager_group_obj.id %}"  class="btn btn-active btn-warning btn-xs">激活</button>
-                        {% endifequal %}
-                      </a>
-                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_update' user_manager_group_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' user_manager_group_obj.id %}"  class="btn btn-delete btn-warning btn-xs">删除</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_detail' user_manager_group_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_update' public_resource_reginoanl_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' public_resource_reginoanl_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'usermanagerdefault:user_manager_group_detail' public_resource_reginoanl_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>
                 </td>
               </tr>
@@ -72,8 +65,8 @@
 {% block footer_script %}
 <script>
 $(function(){
-    $("#menu_manager").addClass('active menu-open');
-    $("#menu_manager_group_list").addClass('active');
+    $("#menu_public_resource_management").addClass('active menu-open');
+    $("#menu_public_resource_management_reginoanl_list").addClass('active');
 });
 //组添加
 $(".btn-add").on('click', function(e) {

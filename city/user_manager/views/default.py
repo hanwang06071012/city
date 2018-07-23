@@ -193,6 +193,7 @@ class UserManagerGroupCreateView(LoginRequiredMixin, CommonMixin, CreateView):
             description = request.POST.get('description', '')
             CityAuthGroup.objects.create(name=name, is_active=is_active, description=description)
         except Exception as e:
+            print(e)
             _log.info(e)
         return HttpResponseRedirect(self.success_url)
 

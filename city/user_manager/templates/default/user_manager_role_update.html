@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'usermanagerdefault:user_manager_role_update' id %}" method="POST">{% csrf_token %}
+      <!-- 角色名 -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="name" value="{{ user_manager_role_obj.name }}" style="width:100%" data-options="label:'组名:',required:true">
+      </div>
+      <!-- 角色描述 -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" value="{{ user_manager_role_obj.description }}" style="width:100%;height:60px" data-options="label:'描述:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

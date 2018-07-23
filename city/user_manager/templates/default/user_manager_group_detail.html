@@ -1,0 +1,46 @@
+<div class="">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-bordered table-hover" role="grid">
+          <thead>
+              <th class="text-center">项目</th>
+              <th class="text-center">数据</th>
+          </thead>
+          <tbody>
+            <!-- 组名username -->
+            <tr>
+                <td class="text-center" style="width:200px"> 用户名 </td>
+                <td class="text-center">{{ user_manager_group_obj.name }}</td>
+            </tr>
+            <!-- 使用状态 is_active-->
+            <tr>
+                <td class="text-center" style="width:200px"> 状态 </td>
+                {% ifequal user_manager_group_obj.is_active 0 %}
+                    <td class="text-center">激活</td>
+                {% else %}
+                    <td class="text-center">禁用</td>
+                {% endifequal %}
+            </tr>
+            <!-- 描述 description-->
+            <tr>
+                <td class="text-center" style="width:200px"> 描述 </td>
+                <td class="text-center">{{ user_manager_group_obj.description }}</td>
+            </tr>
+            <!-- 创建时间 create_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 创建时间 </td>
+                <td class="text-center">{{ user_manager_group_obj.create_time }}</td>
+            </tr>
+            <!-- 更新时间 update_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 更新时间 </td>
+                <td class="text-center">{{ user_manager_group_obj.update_time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

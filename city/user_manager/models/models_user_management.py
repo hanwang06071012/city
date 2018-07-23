@@ -48,6 +48,7 @@ class CityAuthGroup(models.Model):
     """组管理."""
 
     name = models.CharField("组名", max_length=80, blank=False, unique=True)
+    is_active = models.BooleanField("使用还是禁用", default=False)
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -83,6 +84,7 @@ class CityAuthPermission(models.Model):
 
     name = models.CharField("权限名", max_length=255)
     url = models.CharField("权限链接地址", max_length=2048)
+    parent_node = models.IntegerField(default=0)
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)

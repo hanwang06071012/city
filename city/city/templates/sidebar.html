@@ -28,6 +28,18 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li id="vm_home"><a href="/"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+      <li class="treeview" id="menu_utils">
+        <a href="#"id="menu_utils_management"><i class="fa fa-circle-o"></i> 公共资源管理
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+            <li id="menu_utils_management_overview"><a href="#"><i class="fa fa-circle-o"></i> 概况</a></li>
+            <li id="menu_utils_management_erea_list"><a href="{% url 'usermanagerdefault:user_manager_user_list' %}"><i class="fa fa-circle-o"></i>行政区划</a></li>
+            <li id="menu_utils_management_school_list"><a href="{% url 'usermanagerdefault:user_manager_group_list' %}"><i class="fa fa-circle-o"></i>大学</a></li>
+        </ul>
+      </li>
       <li class="treeview" id="menu_manager">
         <a href="#"id="root_menu"><i class="fa fa-circle-o"></i> 用户管理
           <span class="pull-right-container">
@@ -35,14 +47,14 @@
           </span>
         </a>
         <ul class="treeview-menu">
-            <li id="menu_manager_overview"><a href="#"><i class="fa fa-circle-o"></i> 概况</a></li>
+            <li id="menu_manager_overview"><a href="{% url 'usermanagerdefault:user_manager_overview' %}"><i class="fa fa-circle-o"></i> 概况</a></li>
             <li id="menu_manager_user_list"><a href="{% url 'usermanagerdefault:user_manager_user_list' %}"><i class="fa fa-circle-o"></i> 用户</a></li>
-            <li id="menu_manager_group_list"><a href="#"><i class="fa fa-circle-o"></i> 组</a></li>
-            <li id="menu_manager_role_list"><a href="#"><i class="fa fa-circle-o"></i> 角色</a></li>
-            <li id="menu_manager_permission_list"><a href="#"><i class="fa fa-circle-o"></i> 权限</a></li>
+            <li id="menu_manager_group_list"><a href="{% url 'usermanagerdefault:user_manager_group_list' %}"><i class="fa fa-circle-o"></i> 组</a></li>
+            <li id="menu_manager_role_list"><a href="{% url 'usermanagerdefault:user_manager_role_list' %}"><i class="fa fa-circle-o"></i> 角色</a></li>
+            <li id="menu_manager_permission_list"><a href="{% url 'usermanagerdefault:user_manager_permission_list' %}"><i class="fa fa-circle-o"></i> 权限</a></li>
             <li id="menu_manager_note_list"><a href="#"><i class="fa fa-circle-o"></i> 日志</a></li>
         </ul>
-      </li>   
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->

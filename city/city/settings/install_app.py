@@ -19,4 +19,5 @@ INSTALLED_APPS += [
     'huntjob',
     "user_manager",
     "utils",
+    "public_resource",
 ]

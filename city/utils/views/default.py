@@ -14,13 +14,19 @@
 from django.views.generic.base import View
 from django.http import HttpResponse
 import json
-from user_manager.models import CityAuthUser
+from user_manager.models import (
+    CityAuthUser,
+    CityAuthGroup,
+    CityAuthRole,
+    CityAuthPermission,
+)
 
 
 class CommonViewsUpdateView(View):
     """数据更新."""
 
     def post(self, request, *args, **kwargs):
+        """重写接收处理函数."""
         ret = {'state': 0, 'msg': '', 'code': 0}
         id = self.kwargs.get('id')
         dat = json.loads(request.POST.get('dat'))
@@ -30,17 +36,20 @@ class CommonViewsUpdateView(View):
         # print(type(dat))
         tablename = dat['tablename']
         types = dat['types']
+        colname = json.loads(dat['colname'])
         if tablename == "user":
             if types == "update_staff":
-                colname = json.loads(dat['colname'])
                 is_staff = (colname['is_staff'])
                 CityAuthUser.objects.filter(id=id).update(is_staff=is_staff, is_active=1)
             elif types == "update_active":
-                colname = json.loads(dat['colname'])
                 is_active = (colname['is_active'])
                 CityAuthUser.objects.filter(id=id).update(is_active=is_active)
             else:
                 pass
+        elif tablename == "group":
+            if types == "update_active_group":
+                is_active = (colname['is_active'])
+                CityAuthGroup.objects.filter(id=id).update(is_active=is_active)
         # print("========post end========================")
         return HttpResponse(json.dumps(ret))
 
@@ -49,6 +58,7 @@ class CommonViewsDeleteView(View):
     """数据删除."""
 
     def post(self, request, *args, **kwargs):
+        """重写接收处理函数."""
         ret = {'state': 0, 'msg': '', 'code': 0}
         id = self.kwargs.get('id')
         dat = json.loads(request.POST.get('dat'))
@@ -58,5 +68,13 @@ class CommonViewsDeleteView(View):
         tablename = dat['tablename']
         types = dat['types']
         if (tablename == "user") and (types == "delete_user"):
-                CityAuthUser.objects.filter(id=id).delete()
+            CityAuthUser.objects.filter(id=id).delete()
+        elif (tablename == "group") and (types == "delete_group"):
+            CityAuthGroup.objects.filter(id=id).delete()
+        elif (tablename == "role") and (types == "delete_role"):
+            CityAuthRole.objects.filter(id=id).delete()
+        elif (tablename == "permission") and (types == "delete_permission"):
+            CityAuthPermission.objects.filter(id=id).delete()
+        else:
+            pass
         return HttpResponse(json.dumps(ret))

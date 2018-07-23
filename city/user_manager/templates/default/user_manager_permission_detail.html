@@ -1,0 +1,52 @@
+<div class="">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-bordered table-hover" role="grid">
+          <thead>
+              <th class="text-center">项目</th>
+              <th class="text-center">数据</th>
+          </thead>
+          <tbody>
+            <!-- 权限 name -->
+            <tr>
+                <td class="text-center" style="width:200px">权限名</td>
+                <td class="text-center">{{ user_manager_permission_obj.name }}</td>
+            </tr>
+            <!-- 权限地址 url -->
+            <tr>
+                <td class="text-center" style="width:200px">URL</td>
+                <td class="text-center">{{ user_manager_permission_obj.url }}</td>
+            </tr>
+            <!-- 父节点 parent_node -->
+            <tr>
+              <td class="text-center" style="width:200px">父节点</td>
+              {% if user_manager_permission_parent_obj %}
+                <td class="text-center">{{ user_manager_permission_parent_obj.name }}</td>
+              {% else %}
+                <td class="text-center">顶级节点</td>
+              {% endif %}
+              </select>
+            </tr>
+            <!-- 描述 description-->
+            <tr>
+                <td class="text-center" style="width:200px"> 描述 </td>
+                <td class="text-center">{{ user_manager_permission_obj.description }}</td>
+            </tr>
+            <!-- 创建时间 create_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 创建时间 </td>
+                <td class="text-center">{{ user_manager_permission_obj.create_time }}</td>
+            </tr>
+            <!-- 更新时间 update_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 更新时间 </td>
+                <td class="text-center">{{ user_manager_permission_obj.update_time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,3 +27,28 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+        'error': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/city/error.log',
+            'maxBytes': 1024 * 1024 * 5,
+        },
+
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+    },
+
+}

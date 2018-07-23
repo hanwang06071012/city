@@ -12,5 +12,18 @@
 # =========================================================
 # Create your models here.
 
-from utils.common_lib.common_api import *
-from utils.common_lib.common_user_api import *
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+from django.views.generic import View
+
+
+class HomeView(View):
+    """测试"""
+
+    template_name = "home.html"
+
+    def get(self, request, *args, **kwargs):
+        """测试代码"""
+        return render(request, self.template_name, locals())

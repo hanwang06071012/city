@@ -148,6 +148,7 @@ $(".btn-staff").on('click', function(e) {
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
           reload: true,
       });
+      location.reload();
   });
 });
 //禁用激活办理
@@ -169,6 +170,7 @@ $(".btn-active").on('click', function(e) {
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
           reload: true,
       });
+      location.reload();
   });
 });
 //删除用户办理
@@ -183,6 +185,7 @@ $(".btn-delete").on('click', function(e) {
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
           reload: true,
       });
+      location.reload();
   });
 });
 </script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'publicresourcedefault:public_resource_chinese_universities_create' %}" method="POST">{% csrf_token %}
+      <!-- 高校名称 name -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="name" style="width:100%" data-options="label:'高校名称:',required:true">
+      </div>
+      <!-- 管辖部门 competent_authority -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="competent_authority" style="width:100%" data-options="label:'管辖部门:',required:true">
+      </div>
+      <!-- 所在地 location -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="location" style="width:100%" data-options="label:'所在地:',required:true">
+      </div>
+      <!-- 办学层次 level -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="level" label="办学层次" style="width:100%">
+          <option value=0>专科</option>
+          <option value=1>本科</option>
+        </select>
+      </div>
+      <!-- 办学类型 style -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="style" label="办学类型" style="width:100%">
+          <option value=0>公办</option>
+          <option value=1>民办</option>
+          <option value=2>合作办学</option>
+        </select>
+      </div>
+      <!-- 描述 description -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" style="width:100%;height:60px" data-options="label:'描述:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

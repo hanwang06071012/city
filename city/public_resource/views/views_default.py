@@ -16,15 +16,29 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from utils.common_lib import CommonMixin, LoginRequiredMixin
-from public_resource.models import ReginoanlManagement
+from public_resource.models import ReginoanlManagement, ChineseUniversities
 from django.db.models import Q
-from public_resource.forms import ReginoanlCreateForm
+from public_resource.forms import ReginoanlCreateForm, ChineseUniversitiesCreateForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 import logging
 
 _log = logging.getLogger(__name__)
+
+
+class PublicResourceOverView(LoginRequiredMixin, CommonMixin, View):
+    """公共资源概况"""
+
+    template_name = "default/public_resource_overview.html"
+    page_title = "公共资源概况"
+
+    def get(self, request, *args, **kwargs):
+        """重写."""
+        province_num = len(set(ReginoanlManagement.objects.values_list('province', flat=True)))
+        city_num = len(set(ReginoanlManagement.objects.values_list('city', flat=True)))
+        county_num = len(set(ReginoanlManagement.objects.values_list('county', flat=True)))
+        return render(request, self.template_name, locals())
 
 
 class PublicResourceReginoanlListView(LoginRequiredMixin, CommonMixin, ListView):
@@ -113,3 +127,93 @@ class PublicResourceReginoanlDetailView(LoginRequiredMixin, CommonMixin, DetailV
     slug_url_kwarg = 'id'
     template_name = "default/public_resource_reginoanl_detail.html"
     context_object_name = "public_resource_reginoanl_obj"
+
+
+class PublicResourceChineseUniversitiesListView(LoginRequiredMixin, CommonMixin, ListView):
+    """中国大学列表"""
+
+    model = ChineseUniversities
+    template_name = "default/public_resource_chinese_universities_list.html"
+    page_title = "中国大学列表"
+    paginate_by = '10'
+    context_object_name = 'public_resource_chinese_universities_objs'
+
+    def get_queryset(self):
+        """重写."""
+        name = self.request.GET.get('name')
+
+        user_manager_chinese_universities_objs = ChineseUniversities.objects
+        if name:
+            user_manager_chinese_universities_objs = user_manager_chinese_universities_objs.filter(Q(name__contains=name) | Q(competent_authority__contains=name) | Q(location__contains=name) | Q(style__contains=name))
+        return user_manager_chinese_universities_objs.all()
+
+    def get_context_data(self, **kwargs):
+        """重写."""
+        context = super(PublicResourceChineseUniversitiesListView, self).get_context_data(**kwargs)
+        return context
+
+
+class PublicResourceChineseUniversitiesCreateView(LoginRequiredMixin, CommonMixin, CreateView):
+    """中国高校创建."""
+
+    template_name = 'default/public_resource_chinese_universities_create.html'
+    page_title = '中国高校创建'
+    form_class = ChineseUniversitiesCreateForm
+    success_url = reverse_lazy('publicresourcedefault:public_resource_chinese_universities_list')
+
+    def get_form_kwargs(self):
+        """重写."""
+        kwargs = super(PublicResourceChineseUniversitiesCreateView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        try:
+            name = request.POST.get('name')
+            competent_authority = request.POST.get('competent_authority')
+            location = request.POST.get('location')
+            level = request.POST.get('level', '0')
+            style = request.POST.get('style', '0')
+            description = request.POST.get('description', '')
+            ChineseUniversities.objects.create(name=name, competent_authority=competent_authority, location=location, level=level, style=style, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class PublicResourceChineseUniversitiesUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """中国高校更新."""
+
+    template_name = 'default/public_resource_chinese_universities_update.html'
+    page_title = '中国高校更新'
+    success_url = reverse_lazy('publicresourcedefault:public_resource_chinese_universities_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        public_resource_chinese_universities_obj = ChineseUniversities.objects.filter(id=pid).first()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            name = request.POST.get('name')
+            competent_authority = request.POST.get('competent_authority')
+            location = request.POST.get('location')
+            level = request.POST.get('level', '0')
+            style = request.POST.get('style', '0')
+            description = request.POST.get('description', '')
+            ChineseUniversities.objects.filter(id=pid).update(name=name, competent_authority=competent_authority, location=location, level=level, style=style, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class PublicResourceChineseUniversitiesDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """中国高校详情展示."""
+
+    model = ChineseUniversities
+    page_title = '中国高校详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "default/public_resource_chinese_universities_detail.html"
+    context_object_name = "public_resource_chinese_universities_obj"

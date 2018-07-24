@@ -20,8 +20,9 @@ from user_manager.models import (
     CityAuthRole,
     CityAuthPermission,
 )
-from public_resource.models import(
+from public_resource.models import (
     ReginoanlManagement,
+    ChineseUniversities,
 )
 
 
@@ -53,7 +54,8 @@ class CommonViewsUpdateView(View):
             if types == "update_active_group":
                 is_active = (colname['is_active'])
                 CityAuthGroup.objects.filter(id=id).update(is_active=is_active)
-        # print("========post end========================")
+        else:
+            pass
         return HttpResponse(json.dumps(ret))
 
 
@@ -80,6 +82,8 @@ class CommonViewsDeleteView(View):
             CityAuthPermission.objects.filter(id=id).delete()
         elif (tablename == "reginoanlmanagment") and (types == "delete_reginoanl"):
             ReginoanlManagement.objects.filter(id=id).delete()
+        elif (tablename == "chinese_universities") and (types == "delete_universities"):
+            ChineseUniversities.objects.filter(id=id).delete()
         else:
             pass
         return HttpResponse(json.dumps(ret))

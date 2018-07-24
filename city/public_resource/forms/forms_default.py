@@ -15,7 +15,7 @@ from __future__ import absolute_import, unicode_literals
 
 from django import forms
 
-from public_resource.models import ReginoanlManagement
+from public_resource.models import ReginoanlManagement, ChineseUniversities
 
 
 class ReginoanlCreateForm(forms.ModelForm):
@@ -31,3 +31,18 @@ class ReginoanlCreateForm(forms.ModelForm):
 
         model = ReginoanlManagement
         fields = ('province', 'city', 'county', 'description')
+
+
+class ChineseUniversitiesCreateForm(forms.ModelForm):
+    """行政区划创建表单."""
+
+    def __init__(self, request, *args, **kwargs):
+        """初始化函数."""
+        super(ChineseUniversitiesCreateForm, self).__init__(*args, **kwargs)
+        self.request_ = request
+
+    class Meta:
+        """定义规则字段."""
+
+        model = ChineseUniversities
+        fields = ('name', 'competent_authority', 'location', 'level', 'style', 'description')

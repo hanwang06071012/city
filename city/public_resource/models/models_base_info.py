@@ -28,7 +28,9 @@ class ReginoanlManagement(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
-        app_label = 'huntjob'
+        """类型."""
+
+        app_label = 'public_resource'
         verbose_name = "中国区划管理"
         db_table = "reginoanl_management"
         verbose_name_plural = verbose_name
@@ -40,13 +42,16 @@ class ChineseUniversities(models.Model):
     name = models.CharField("高校名称", max_length=128, blank=False)
     competent_authority = models.CharField("管辖部门", max_length=128, blank=False)
     location = models.CharField("所在地", max_length=128, blank=False)
-    style = models.CharField("办学类型", max_length=64, blank=False)
+    level = models.IntegerField("办学层次")  # 0：专科，1：本科
+    style = models.IntegerField("办学类型")  # 0：民办，1：公办，2：合作办学
     description = models.TextField("描述", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
-        app_label = 'huntjob'
+        """类型."""
+
+        app_label = 'public_resource'
         verbose_name = "中国全国高校"
         db_table = "chinese_universities"
         verbose_name_plural = verbose_name

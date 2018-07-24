@@ -18,17 +18,27 @@ from django.db.models import Q
 
 # Create your views here.
 from django.views.generic import View, ListView, DetailView
+from django.views.generic.edit import CreateView
 from huntjob.models import (
     JobInformation,
     JobSalaryBenefitsRelationship,
     JobInformationFunctionsRelationship,
     CompanyInformation,
-    )
+    CompanyScale,
+)
 from django.db.models import Q
-from utils.common_lib import CommonMixin
+from utils.common_lib import CommonMixin, LoginRequiredMixin
+from huntjob.forms import (
+    CompanyScaleCreateForm,
+)
+from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponseRedirect
+import logging
+
+_log = logging.getLogger(__name__)
 
 
-class HuntJobIndexListView(CommonMixin, ListView):
+class HuntJobIndexListView(LoginRequiredMixin, CommonMixin, ListView):
     """岗位搜索展示默认页"""
 
     model = JobInformation
@@ -52,7 +62,7 @@ class HuntJobIndexListView(CommonMixin, ListView):
         return context
 
 
-class JobInformationDetailView(CommonMixin, DetailView):
+class JobInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
     """岗位详情展示."""
 
     model = JobInformation
@@ -75,7 +85,7 @@ class JobInformationDetailView(CommonMixin, DetailView):
         return context
 
 
-class CompanyInformationDetailView(CommonMixin, DetailView):
+class CompanyInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
     """公司详情展示."""
 
     model = CompanyInformation
@@ -92,3 +102,56 @@ class CompanyInformationDetailView(CommonMixin, DetailView):
         job_information_objs = JobInformation.objects.filter(company_information=company_obj)
         context['job_information_objs'] = job_information_objs
         return context
+
+
+class HuntJobCompanyScaleListView(LoginRequiredMixin, CommonMixin, ListView):
+    """公司规模列表"""
+
+    model = CompanyScale
+    template_name = "company/huntjob_company_scale_list.html"
+    page_title = "公司规模列表"
+    paginate_by = '10'
+    context_object_name = 'huntjob_company_scale_objs'
+
+    def get_queryset(self):
+        """重写."""
+        name = self.request.GET.get('name')
+
+        huntjob_company_scale_objs = CompanyScale.objects
+        if name:
+            huntjob_company_scale_objs = huntjob_company_scale_objs.filter(Q(name__contains=name) | Q(value_max__contains=name))
+        return huntjob_company_scale_objs.all()
+
+    def get_context_data(self, **kwargs):
+        """重写."""
+        context = super(HuntJobCompanyScaleListView, self).get_context_data(**kwargs)
+        return context
+
+
+class HuntJobCompanyScaleCreateView(LoginRequiredMixin, CommonMixin, CreateView):
+    """公司规模创建."""
+
+    template_name = 'company/huntjob_company_scale_create.html'
+    page_title = '公司规模创建'
+    form_class = CompanyScaleCreateForm
+    success_url = reverse_lazy('huntjob:huntjob_company_scale_list')
+
+    def get_form_kwargs(self):
+        """重写."""
+        kwargs = super(HuntJobCompanyScaleCreateView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        print("=========post start==========================")
+        try:
+            name = request.POST.get('name')
+            value_max = request.POST.get('value_max')
+            description = request.POST.get('description', '')
+            print(name, value_max, description)
+            CompanyScale.objects.create(name=name, value_max=value_max, description=description)
+        except Exception as e:
+            print(e)
+            _log.info(e)
+        print("=========post end==========================")
+        return HttpResponseRedirect(self.success_url)

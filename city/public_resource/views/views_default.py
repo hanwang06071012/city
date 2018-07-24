@@ -47,7 +47,7 @@ class PublicResourceReginoanlListView(LoginRequiredMixin, CommonMixin, ListView)
     model = ReginoanlManagement
     template_name = "default/public_resource_reginoanl_list.html"
     page_title = "行政区划列表"
-    paginate_by = '10'
+    paginate_by = '30'
     context_object_name = 'public_resource_reginoanl_objs'
 
     def get_queryset(self):
@@ -135,7 +135,7 @@ class PublicResourceChineseUniversitiesListView(LoginRequiredMixin, CommonMixin,
     model = ChineseUniversities
     template_name = "default/public_resource_chinese_universities_list.html"
     page_title = "中国大学列表"
-    paginate_by = '10'
+    paginate_by = '30'
     context_object_name = 'public_resource_chinese_universities_objs'
 
     def get_queryset(self):

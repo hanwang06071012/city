@@ -45,7 +45,7 @@
                     <div class="btn-group">
                       <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_information_update' huntjob_company_information_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
                       <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_company_information_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_industry_detail' huntjob_company_information_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_information_detail' huntjob_company_information_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>
                 </td>
               </tr>
@@ -83,24 +83,24 @@ $(".btn-add").on('click', function(e) {
       });
 });
 
-// 行业详情
+// 公司信息详情
 $(".btn-detail").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '规模详情展示',
+          title: '公司信息展示',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 行业更新
+// 公司更新
 $(".btn-update").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '规模更新',
+          title: '公司更新',
           size: 'lg',
           footer: false,
           remote: url

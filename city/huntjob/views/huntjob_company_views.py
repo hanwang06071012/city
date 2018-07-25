@@ -487,3 +487,14 @@ class HuntJobCompanyInformationUpdateView(LoginRequiredMixin, CommonMixin, View)
         except Exception as e:
             _log.info(e)
         return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobCompanyInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """公司详情展示."""
+
+    model = CompanyInformation
+    page_title = '公司详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "company/huntjob_company_information_detail.html"
+    context_object_name = "huntjob_company_information_obj"

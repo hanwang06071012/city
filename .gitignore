@@ -9,7 +9,7 @@ Desktop.ini
 *.so
 *.egg
 *.egg-info
-dist
+# dist
 build
 venv
 

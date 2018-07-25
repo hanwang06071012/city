@@ -35,6 +35,7 @@ from huntjob.views import (
     HuntJobCompanyInformationListView,
     HuntJobCompanyInformationCreateView,
     HuntJobCompanyInformationUpdateView,
+    HuntJobCompanyInformationDetailView,
 )
 
 urlpatterns = [
@@ -57,5 +58,6 @@ urlpatterns = [
     url(r'^company/information/list/', HuntJobCompanyInformationListView.as_view(), name='huntjob_company_information_list'),
     url(r'^company/information/create/', HuntJobCompanyInformationCreateView.as_view(), name='huntjob_company_information_create'),
     url(r'^company/information/(?P<id>[0-9]+)/update/', HuntJobCompanyInformationUpdateView.as_view(), name='huntjob_company_information_update'),
+    url(r'^company/information/(?P<id>[0-9]+)/detail/', HuntJobCompanyInformationDetailView.as_view(), name='huntjob_company_information_detail'),
 
 ]

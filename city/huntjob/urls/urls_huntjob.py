@@ -28,6 +28,13 @@ from huntjob.views import (
     HuntJobCompanyStyleCreateView,
     HuntJobCompanyStyleUpdateView,
     HuntJobCompanyStyleDetailView,
+    HuntJobCompanyIndustryListView,
+    HuntJobCompanyIndustryCreateView,
+    HuntJobCompanyIndustryUpdateView,
+    HuntJobCompanyIndustryDetailView,
+    HuntJobCompanyInformationListView,
+    HuntJobCompanyInformationCreateView,
+    HuntJobCompanyInformationUpdateView,
 )
 
 urlpatterns = [
@@ -43,4 +50,12 @@ urlpatterns = [
     url(r'^company/style/create/', HuntJobCompanyStyleCreateView.as_view(), name='huntjob_company_style_create'),
     url(r'^company/style/(?P<id>[0-9]+)/update/', HuntJobCompanyStyleUpdateView.as_view(), name='huntjob_company_style_update'),
     url(r'^company/style/(?P<id>[0-9]+)/detail/', HuntJobCompanyStyleDetailView.as_view(), name='huntjob_company_style_detail'),
+    url(r'^company/industry/list/', HuntJobCompanyIndustryListView.as_view(), name='huntjob_company_industry_list'),
+    url(r'^company/industry/create/', HuntJobCompanyIndustryCreateView.as_view(), name='huntjob_company_industry_create'),
+    url(r'^company/industry/(?P<id>[0-9]+)/update/', HuntJobCompanyIndustryUpdateView.as_view(), name='huntjob_company_industry_update'),
+    url(r'^company/industry/(?P<id>[0-9]+)/detail/', HuntJobCompanyIndustryDetailView.as_view(), name='huntjob_company_industry_detail'),
+    url(r'^company/information/list/', HuntJobCompanyInformationListView.as_view(), name='huntjob_company_information_list'),
+    url(r'^company/information/create/', HuntJobCompanyInformationCreateView.as_view(), name='huntjob_company_information_create'),
+    url(r'^company/information/(?P<id>[0-9]+)/update/', HuntJobCompanyInformationUpdateView.as_view(), name='huntjob_company_information_update'),
+
 ]

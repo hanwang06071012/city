@@ -33,6 +33,7 @@ class ReginoanlManagement(models.Model):
         app_label = 'public_resource'
         verbose_name = "中国区划管理"
         db_table = "reginoanl_management"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -54,4 +55,5 @@ class ChineseUniversities(models.Model):
         app_label = 'public_resource'
         verbose_name = "中国全国高校"
         db_table = "chinese_universities"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name

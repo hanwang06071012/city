@@ -87,21 +87,24 @@ class UserManagerUserCreateView(LoginRequiredMixin, CommonMixin, CreateView):
         return kwargs
 
     def post(self, request, *args, **kwargs):
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        is_superuser = int(request.POST.get('is_superuser', '0'))
-        first_name = request.POST.get('first_name', '')
-        last_name = request.POST.get('last_name', '')
-        email = request.POST.get('email', '')
-        phone = request.POST.get('phone', '')
-        qq = request.POST.get('qq', '')
-        is_staff = int(request.POST.get('is_staff', '0'))
-        is_active = int(request.POST.get('is_active', '0'))
-        date_joined = request.POST.get('date_joined', '')
-        date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
-        description = request.POST.get('description', '')
-        last_login = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        CityAuthUser.objects.create(username=username, password=password, is_superuser=is_superuser, first_name=first_name, last_name=last_name, email=email, phone=phone, qq=qq, is_staff=is_staff, is_active=is_active, date_joined=date_joined, description=description, last_login=last_login)
+        try:
+            username = request.POST.get('username', '')
+            password = request.POST.get('password', '')
+            is_superuser = int(request.POST.get('is_superuser', '0'))
+            first_name = request.POST.get('first_name', '')
+            last_name = request.POST.get('last_name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            qq = request.POST.get('qq', '')
+            is_staff = int(request.POST.get('is_staff', '0'))
+            is_active = int(request.POST.get('is_active', '0'))
+            date_joined = request.POST.get('date_joined', '')
+            date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
+            description = request.POST.get('description', '')
+            last_login = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            CityAuthUser.objects.create(username=username, password=password, is_superuser=is_superuser, first_name=first_name, last_name=last_name, email=email, phone=phone, qq=qq, is_staff=is_staff, is_active=is_active, date_joined=date_joined, description=description, last_login=last_login)
+        except Exception as e:
+            _log.info(e)
         return HttpResponseRedirect(self.success_url)
 
 
@@ -129,22 +132,25 @@ class UserManagerUserUpdateView(LoginRequiredMixin, CommonMixin, View):
         return render(request, self.template_name, locals())
 
     def post(self, request, *args, **kwargs):
-        id = self.kwargs.get('id')
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        is_superuser = int(request.POST.get('is_superuser', '0'))
-        first_name = request.POST.get('first_name', '')
-        last_name = request.POST.get('last_name', '')
-        email = request.POST.get('email', '')
-        phone = request.POST.get('phone', '')
-        qq = request.POST.get('qq', '')
-        is_staff = int(request.POST.get('is_staff', '0'))
-        is_active = int(request.POST.get('is_active', ''))
-        date_joined = request.POST.get('date_joined', '')
-        date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
-        description = request.POST.get('description', '')
-        last_login = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        CityAuthUser.objects.filter(id=id).update(username=username, password=password, is_superuser=is_superuser, first_name=first_name, last_name=last_name, email=email, phone=phone, qq=qq, is_staff=is_staff, is_active=is_active, date_joined=date_joined, description=description, last_login=last_login)
+        try:
+            id = self.kwargs.get('id')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            is_superuser = int(request.POST.get('is_superuser', '0'))
+            first_name = request.POST.get('first_name', '')
+            last_name = request.POST.get('last_name', '')
+            email = request.POST.get('email', '')
+            phone = request.POST.get('phone', '')
+            qq = request.POST.get('qq', '')
+            is_staff = int(request.POST.get('is_staff', '0'))
+            is_active = int(request.POST.get('is_active', ''))
+            date_joined = request.POST.get('date_joined', '')
+            date_joined = EasyAndDateTimeConversion.easy_to_datetime(date_joined)
+            description = request.POST.get('description', '')
+            last_login = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            CityAuthUser.objects.filter(id=id).update(username=username, password=password, is_superuser=is_superuser, first_name=first_name, last_name=last_name, email=email, phone=phone, qq=qq, is_staff=is_staff, is_active=is_active, date_joined=date_joined, description=description, last_login=last_login)
+        except Exception as e:
+            _log.info(e)
         return HttpResponseRedirect(self.success_url)
 
 
@@ -222,11 +228,14 @@ class UserManagerGroupUpdateView(LoginRequiredMixin, CommonMixin, View):
         return render(request, self.template_name, locals())
 
     def post(self, request, *args, **kwargs):
-        id = self.kwargs.get('id')
-        name = request.POST.get('name')
-        is_active = int(request.POST.get('is_active', '0'))
-        description = request.POST.get('description', '')
-        CityAuthGroup.objects.filter(id=id).update(name=name, is_active=is_active, description=description)
+        try:
+            id = self.kwargs.get('id')
+            name = request.POST.get('name')
+            is_active = int(request.POST.get('is_active', '0'))
+            description = request.POST.get('description', '')
+            CityAuthGroup.objects.filter(id=id).update(name=name, is_active=is_active, description=description)
+        except Exception as e:
+            _log.info(e)
         return HttpResponseRedirect(self.success_url)
 
 

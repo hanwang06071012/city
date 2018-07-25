@@ -30,6 +30,7 @@ class ReleaseDate(models.Model):
         app_label = 'huntjob'
         verbose_name = "月薪范围"
         db_table = "release_date"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -46,6 +47,7 @@ class MonthlySalaryRange(models.Model):
         app_label = 'huntjob'
         verbose_name = "月薪范围"
         db_table = "monthly_salary_range"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -62,6 +64,7 @@ class WorkingYears(models.Model):
         app_label = 'huntjob'
         verbose_name = "工作年限"
         db_table = "working_years"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -77,6 +80,7 @@ class Academic_Requirements(models.Model):
         app_label = 'huntjob'
         verbose_name = "学历要求"
         db_table = "academic_requirements"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -93,6 +97,7 @@ class SalaryBenefits(models.Model):
         app_label = 'huntjob'
         verbose_name = "薪资福利"
         db_table = "salary_benefits"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -108,6 +113,7 @@ class JobType(models.Model):
         app_label = 'huntjob'
         verbose_name = "工作类型"
         db_table = "job_type"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -123,6 +129,7 @@ class JobFunctions(models.Model):
         app_label = 'huntjob'
         verbose_name = "职业类别"
         db_table = "job_functions"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -148,6 +155,7 @@ class JobInformation(models.Model):
         app_label = 'huntjob'
         verbose_name = "职位信息"
         db_table = "job_information"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -164,6 +172,7 @@ class JobSalaryBenefitsRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "工作与薪资福利关联模型"
         db_table = "job_salary_benefits_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -180,4 +189,5 @@ class JobInformationFunctionsRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "工作与类别关联模型"
         db_table = "job_information_functions_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name

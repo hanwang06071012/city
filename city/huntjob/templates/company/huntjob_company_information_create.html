@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'huntjob:huntjob_company_information_create' %}" method="POST">{% csrf_token %}
+      <!-- 公司名称 name -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="name" style="width:100%" data-options="label:'公司名称:',required:true">
+      </div>
+      <!-- 规模 scale -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="scale" label="规模" style="width:100%">
+          {% for scale_obj in scale_objs %}
+            <option value="{{ scale_obj.id }}">{{ scale_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 性质 style -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="style" label="性质" style="width:100%">
+          {% for style_obj in style_objs %}
+            <option value="{{ style_obj.id }}">{{ style_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 行业 industry -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="industry" label="行业" style="width:100%">
+          {% for industry_obj in industry_objs %}
+            <option value="{{ industry_obj.id }}">{{ industry_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 公司地址 address -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="address" style="width:100%" data-options="label:'公司地址:',required:true">
+      </div>
+      <!-- 联系方式 contact -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="contact" style="width:100%" data-options="label:'联系方式:',required:true">
+      </div>
+      <!-- 成立时间 established -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-datetimebox" name="established" label="成立时间:" labelPosition="left"  style="width:100%;">
+      </div>
+      <!-- 公司简介 introduction -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="introduction" style="width:100%;height:150px;" data-options="label:'公司简介:',required:true,multiline:true">
+      </div>
+      <!-- 备注 description -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" style="width:100%;height:150px;" data-options="label:'备注:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">提交</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">重置</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

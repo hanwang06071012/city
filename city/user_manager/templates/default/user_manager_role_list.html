@@ -99,6 +99,7 @@ $(".btn-delete").on('click', function(e) {
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
           reload: true,
       });
+      location.reload();
   });
 });
 </script>

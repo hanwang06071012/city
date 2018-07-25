@@ -27,6 +27,8 @@ from public_resource.models import (
 from huntjob.models import (
     CompanyScale,
     CompanyStyle,
+    CompanyIndustry,
+    CompanyInformation,
 )
 
 
@@ -92,6 +94,10 @@ class CommonViewsDeleteView(View):
             CompanyScale.objects.filter(id=id).delete()
         elif (tablename == "company_style") and (types == "delete_company_style"):
             CompanyStyle.objects.filter(id=id).delete()
+        elif (tablename == "company_industry") and (types == "delete_company_industry"):
+            CompanyIndustry.objects.filter(id=id).delete()
+        elif (tablename == "company_information") and (types == "delete_company_information"):
+            CompanyInformation.objects.filter(id=id).delete()
         else:
             pass
         return HttpResponse(json.dumps(ret))

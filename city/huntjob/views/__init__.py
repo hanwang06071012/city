@@ -13,5 +13,5 @@
 # Create your models here.
 
 # 此处注册所有views视图函数
-from .huntjob_index_views import *
+from .huntjob_company_views import *
 from .huntjob_test_views import *

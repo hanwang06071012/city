@@ -22,6 +22,12 @@ from huntjob.views import (
     CompanyInformationDetailView,
     HuntJobCompanyScaleListView,
     HuntJobCompanyScaleCreateView,
+    HuntJobCompanyScaleUpdateView,
+    HuntJobCompanyScaleDetailView,
+    HuntJobCompanyStyleListView,
+    HuntJobCompanyStyleCreateView,
+    HuntJobCompanyStyleUpdateView,
+    HuntJobCompanyStyleDetailView,
 )
 
 urlpatterns = [
@@ -31,4 +37,10 @@ urlpatterns = [
     url(r'^company/information/(?P<id>[0-9]+)/detail/', CompanyInformationDetailView.as_view(), name='company_information_detail'),
     url(r'^company/scale/list/', HuntJobCompanyScaleListView.as_view(), name='huntjob_company_scale_list'),
     url(r'^company/scale/create/', HuntJobCompanyScaleCreateView.as_view(), name='huntjob_company_scale_create'),
+    url(r'^company/scale/(?P<id>[0-9]+)/update/', HuntJobCompanyScaleUpdateView.as_view(), name='huntjob_company_scale_update'),
+    url(r'^company/scale/(?P<id>[0-9]+)/detail/', HuntJobCompanyScaleDetailView.as_view(), name='huntjob_company_scale_detail'),
+    url(r'^company/style/list/', HuntJobCompanyStyleListView.as_view(), name='huntjob_company_style_list'),
+    url(r'^company/style/create/', HuntJobCompanyStyleCreateView.as_view(), name='huntjob_company_style_create'),
+    url(r'^company/style/(?P<id>[0-9]+)/update/', HuntJobCompanyStyleUpdateView.as_view(), name='huntjob_company_style_update'),
+    url(r'^company/style/(?P<id>[0-9]+)/detail/', HuntJobCompanyStyleDetailView.as_view(), name='huntjob_company_style_detail'),
 ]

@@ -15,7 +15,7 @@ from __future__ import absolute_import, unicode_literals
 
 from django import forms
 
-from huntjob.models import CompanyScale
+from huntjob.models import CompanyScale, CompanyStyle
 
 
 class CompanyScaleCreateForm(forms.ModelForm):
@@ -31,3 +31,18 @@ class CompanyScaleCreateForm(forms.ModelForm):
 
         model = CompanyScale
         fields = ('name', 'value_max', 'description')
+
+
+class CompanyStyleCreateForm(forms.ModelForm):
+    """公司性质创建表单."""
+
+    def __init__(self, request, *args, **kwargs):
+        """初始化函数."""
+        super(CompanyStyleCreateForm, self).__init__(*args, **kwargs)
+        self.request_ = request
+
+    class Meta:
+        """定义规则字段."""
+
+        model = CompanyStyle
+        fields = ('name', 'description')

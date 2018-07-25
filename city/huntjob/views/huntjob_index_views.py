@@ -25,11 +25,13 @@ from huntjob.models import (
     JobInformationFunctionsRelationship,
     CompanyInformation,
     CompanyScale,
+    CompanyStyle,
+    CompanyIndustry,
 )
-from django.db.models import Q
 from utils.common_lib import CommonMixin, LoginRequiredMixin
 from huntjob.forms import (
     CompanyScaleCreateForm,
+    CompanyStyleCreateForm,
 )
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -143,15 +145,128 @@ class HuntJobCompanyScaleCreateView(LoginRequiredMixin, CommonMixin, CreateView)
         return kwargs
 
     def post(self, request, *args, **kwargs):
-        print("=========post start==========================")
         try:
             name = request.POST.get('name')
             value_max = request.POST.get('value_max')
             description = request.POST.get('description', '')
-            print(name, value_max, description)
             CompanyScale.objects.create(name=name, value_max=value_max, description=description)
         except Exception as e:
-            print(e)
             _log.info(e)
-        print("=========post end==========================")
         return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobCompanyScaleUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """公司规模更新."""
+
+    template_name = 'company/huntjob_company_scale_update.html'
+    page_title = '公司规模更新'
+    success_url = reverse_lazy('huntjob:huntjob_company_scale_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        huntjob_company_scale_obj = CompanyScale.objects.filter(id=pid).first()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            name = request.POST.get('name')
+            value_max = request.POST.get('value_max')
+            description = request.POST.get('description', '')
+            CompanyScale.objects.filter(id=pid).update(name=name, value_max=value_max, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobCompanyScaleDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """公司规模详情展示."""
+
+    model = CompanyScale
+    page_title = '公司规模详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "company/huntjob_company_scale_detail.html"
+    context_object_name = "huntjob_company_scale_obj"
+
+
+class HuntJobCompanyStyleListView(LoginRequiredMixin, CommonMixin, ListView):
+    """性质列表"""
+
+    model = CompanyStyle
+    template_name = "company/huntjob_company_style_list.html"
+    page_title = "性质列表"
+    paginate_by = '10'
+    context_object_name = 'huntjob_company_style_objs'
+
+    def get_queryset(self):
+        """重写."""
+        name = self.request.GET.get('name')
+
+        huntjob_company_style_objs = CompanyStyle.objects
+        if name:
+            huntjob_company_style_objs = huntjob_company_style_objs.filter(Q(name__contains=name))
+        return huntjob_company_style_objs.all()
+
+    def get_context_data(self, **kwargs):
+        """重写."""
+        context = super(HuntJobCompanyStyleListView, self).get_context_data(**kwargs)
+        return context
+
+
+class HuntJobCompanyStyleCreateView(LoginRequiredMixin, CommonMixin, CreateView):
+    """公司性质创建."""
+
+    template_name = 'company/huntjob_company_style_create.html'
+    page_title = '公司性质创建'
+    form_class = CompanyStyleCreateForm
+    success_url = reverse_lazy('huntjob:huntjob_company_style_list')
+
+    def get_form_kwargs(self):
+        """重写."""
+        kwargs = super(HuntJobCompanyStyleCreateView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        try:
+            name = request.POST.get('name')
+            description = request.POST.get('description', '')
+            CompanyStyle.objects.create(name=name, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobCompanyStyleUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """公司性质更新."""
+
+    template_name = 'company/huntjob_company_style_update.html'
+    page_title = '公司性质更新'
+    success_url = reverse_lazy('huntjob:huntjob_company_style_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        huntjob_company_style_obj = CompanyStyle.objects.filter(id=pid).first()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            name = request.POST.get('name')
+            description = request.POST.get('description', '')
+            CompanyStyle.objects.filter(id=pid).update(name=name, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobCompanyStyleDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """公司性质详情展示."""
+
+    model = CompanyStyle
+    page_title = '公司性质详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "company/huntjob_company_style_detail.html"
+    context_object_name = "huntjob_company_style_obj"

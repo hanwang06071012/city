@@ -3,7 +3,7 @@
 <div class="box">
     <div class="box-header">
       <h1 class="box-title">{{ page_title }}</h1>
-      <a href="#" data-url="{% url 'huntjob:huntjob_company_scale_create' %}" class="btn btn-add bg-purple btn-sm pull-right">新增公司规模</a>
+      <a href="#" data-url="{% url 'huntjob:huntjob_company_style_create' %}" class="btn btn-add bg-purple btn-sm pull-right">新增性质</a>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -22,7 +22,6 @@
             <thead>
               <tr role="row">
                 <th class="text-center">名称</th>
-                <th class="text-center">最大人数</th>
                 <th class="text-center">描述</th>
                 <th class="text-center">创建日期</th>
                 <th class="text-center">更新时间</th>
@@ -30,18 +29,17 @@
               </tr>
             </thead>
             <tbody>
-              {% for huntjob_company_scale_obj in huntjob_company_scale_objs %}
+              {% for huntjob_company_style_obj in huntjob_company_style_objs %}
               <tr role="row" class="odd">
-                <td class="text-center">{{ huntjob_company_scale_obj.name }}</td>
-                <td class="text-center">{{ huntjob_company_scale_obj.value_max }}</td>
-                <td class="text-center">{{ huntjob_company_scale_obj.description }}</td>
-                <td class="text-center">{{ huntjob_company_scale_obj.create_time }}</td>
-                <td class="text-center">{{ huntjob_company_scale_obj.update_time }}</td>
+                <td class="text-center">{{ huntjob_company_style_obj.name }}</td>
+                <td class="text-center">{{ huntjob_company_style_obj.description }}</td>
+                <td class="text-center">{{ huntjob_company_style_obj.create_time }}</td>
+                <td class="text-center">{{ huntjob_company_style_obj.update_time }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_scale_update' huntjob_company_scale_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_company_scale_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_scale_detail' huntjob_company_scale_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_style_update' huntjob_company_style_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_company_style_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_style_detail' huntjob_company_style_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>
                 </td>
               </tr>
@@ -65,51 +63,51 @@
 $(function(){
   $("#menu_huntjob_career_management").addClass('active menu-open');
   $("#menu_huntjob_company_management").addClass('active menu-open');
-  $("#menu_huntjob_company_management_scale_list").addClass('active');
+  $("#menu_huntjob_company_management_style_list").addClass('active');
 });
-// 规模添加
+// 性质添加
 $(".btn-add").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '规模添加',
+          title: '性质添加',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 规模详情
+// 性质详情
 $(".btn-detail").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '规模详情展示',
+          title: '性质详情展示',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 规模更新
+// 性质更新
 $(".btn-update").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '规模更新',
+          title: '性质更新',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 删除企业规模
+// 删除企业性质规模
 $(".btn-delete").on('click', function(e) {
   e.preventDefault();
   var url = $(this).attr('data-url');
   var token = getCookie('csrftoken');
-  var dat_obj = JSON.stringify({'tablename': 'company_scale','types': 'delete_company_scale',})
-  ui.confirm('确定要进行该规模删除操作吗?', function() {
+  var dat_obj = JSON.stringify({'tablename': 'company_style','types': 'delete_company_style',})
+  ui.confirm('确定要进行该企业性质删除操作吗?', function() {
       Net.post({
           url: url,
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},

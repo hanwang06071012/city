@@ -21,3 +21,9 @@ sftp-config.json
 
 # virtualenv
 venv
+
+# uwsgi
+opeate.sh
+uwsgi.ini
+uwsgi.pid
+Django.log

@@ -21,7 +21,7 @@ class ReleaseDate(models.Model):
     """职位发布日期模型."""
 
     name = models.CharField("发布日期名称", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -40,7 +40,7 @@ class MonthlySalaryRange(models.Model):
     """职位月薪范围模型."""
 
     name = models.CharField("月薪范围", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -59,7 +59,7 @@ class WorkingYears(models.Model):
     """工作年限模型."""
 
     name = models.CharField("工作年限", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -78,6 +78,7 @@ class AcademicRequirements(models.Model):
     """学历要求模型."""
 
     name = models.CharField("学历要求", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -96,7 +97,7 @@ class SalaryBenefits(models.Model):
     """薪资福利模型."""
 
     name = models.CharField("薪资福利", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -115,6 +116,7 @@ class JobType(models.Model):
     """工作类型模型."""
 
     name = models.CharField("工作类型", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
@@ -133,6 +135,7 @@ class JobFunctions(models.Model):
     """职业类别模型."""
 
     name = models.CharField("职业类别名称", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)

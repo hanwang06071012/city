@@ -35,6 +35,19 @@ from huntjob.views import (
     HuntJobCompanyInformationCreateView,
     HuntJobCompanyInformationUpdateView,
     HuntJobCompanyInformationDetailView,
+    HuntJobReleaseDateListView,
+    HuntJobReleaseDateCreateView,
+    HuntJobReleaseDateUpdateView,
+    HuntJobReleaseDateDetailView,
+    HuntJobMonthlySalaryRangeListView,
+    HuntJobMonthlySalaryRangeCreateView,
+    HuntJobMonthlySalaryRangeUpdateView,
+    HuntJobMonthlySalaryRangeDetailView,
+    HuntJobWorkingYearsListView,
+    HuntJobWorkingYearsCreateView,
+    HuntJobWorkingYearsUpdateView,
+    HuntJobAcademicRequirementsListView,
+    HuntJobAcademicRequirementsCreateView,
 )
 
 urlpatterns = [
@@ -57,5 +70,18 @@ urlpatterns = [
     url(r'^company/information/create/', HuntJobCompanyInformationCreateView.as_view(), name='huntjob_company_information_create'),
     url(r'^company/information/(?P<id>[0-9]+)/update/', HuntJobCompanyInformationUpdateView.as_view(), name='huntjob_company_information_update'),
     url(r'^company/information/(?P<id>[0-9]+)/detail/', HuntJobCompanyInformationDetailView.as_view(), name='huntjob_company_information_detail'),
+    url(r'^release/date/list/', HuntJobReleaseDateListView.as_view(), name='huntjob_release_date_list'),
+    url(r'^release/date/create/', HuntJobReleaseDateCreateView.as_view(), name='huntjob_release_date_create'),
+    url(r'^release/date/(?P<id>[0-9]+)/update/', HuntJobReleaseDateUpdateView.as_view(), name='huntjob_release_date_update'),
+    url(r'^release/date/(?P<id>[0-9]+)/detail/', HuntJobReleaseDateDetailView.as_view(), name='huntjob_release_date_detail'),
+    url(r'^monthly/salary/range/list/', HuntJobMonthlySalaryRangeListView.as_view(), name='huntjob_monthly_salary_range_list'),
+    url(r'^monthly/salary/range/create/', HuntJobMonthlySalaryRangeCreateView.as_view(), name='huntjob_monthly_salary_range_create'),
+    url(r'^monthly/salary/range/(?P<id>[0-9]+)/update/', HuntJobMonthlySalaryRangeUpdateView.as_view(), name='huntjob_monthly_salary_range_update'),
+    url(r'^monthly/salary/range/(?P<id>[0-9]+)/detail/', HuntJobMonthlySalaryRangeDetailView.as_view(), name='huntjob_monthly_salary_range_detail'),
+    url(r'^working/years/list/', HuntJobWorkingYearsListView.as_view(), name='huntjob_working_years_list'),
+    url(r'^working/years/create/', HuntJobWorkingYearsCreateView.as_view(), name='huntjob_working_years_create'),
+    url(r'^working/years/(?P<id>[0-9]+)/update/', HuntJobWorkingYearsUpdateView.as_view(), name='huntjob_working_years_update'),
+    url(r'^academic/requirements/list/', HuntJobAcademicRequirementsListView.as_view(), name='huntjob_academic_requirements_list'),
+    url(r'^academic/requirements/create/', HuntJobAcademicRequirementsCreateView.as_view(), name='huntjob_academic_requirements_create'),
 
 ]

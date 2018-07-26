@@ -12,3 +12,4 @@
 # =========================================================
 """
 from .forms_company import *
+from .forms_job import *

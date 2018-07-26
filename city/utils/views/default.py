@@ -29,6 +29,8 @@ from huntjob.models import (
     CompanyStyle,
     CompanyIndustry,
     CompanyInformation,
+    ReleaseDate,
+    MonthlySalaryRange,
 )
 
 
@@ -98,6 +100,10 @@ class CommonViewsDeleteView(View):
             CompanyIndustry.objects.filter(id=id).delete()
         elif (tablename == "company_information") and (types == "delete_company_information"):
             CompanyInformation.objects.filter(id=id).delete()
+        elif (tablename == "release_date") and (types == "delete_release_date"):
+            ReleaseDate.objects.filter(id=id).delete()
+        elif (tablename == "monthly_salary_range") and (types == "delete_monthly_salary_range"):
+            MonthlySalaryRange.objects.filter(id=id).delete()
         else:
             pass
         return HttpResponse(json.dumps(ret))

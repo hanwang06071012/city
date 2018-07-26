@@ -493,7 +493,7 @@ class HuntJobCompanyInformationDetailView(LoginRequiredMixin, CommonMixin, Detai
     """公司详情展示."""
 
     model = CompanyInformation
-    page_title = '公司详情'
+    page_title = '公司详情公司详情公司详情'
     slug_field = 'id'
     slug_url_kwarg = 'id'
     template_name = "company/huntjob_company_information_detail.html"

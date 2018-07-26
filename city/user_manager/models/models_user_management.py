@@ -41,6 +41,7 @@ class CityAuthUser(models.Model):
         app_label = 'huntjob'
         verbose_name = "用户管理"
         db_table = "city_auth_user"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -59,6 +60,7 @@ class CityAuthGroup(models.Model):
         app_label = 'huntjob'
         verbose_name = "组管理"
         db_table = "city_auth_group"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -76,6 +78,7 @@ class CityAuthRole(models.Model):
         app_label = 'huntjob'
         verbose_name = "角色管理"
         db_table = "city_auth_Role"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -95,6 +98,7 @@ class CityAuthPermission(models.Model):
         app_label = 'huntjob'
         verbose_name = "角色管理"
         db_table = "city_auth_permission"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -113,6 +117,7 @@ class CityAuthRolePermissionRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "角色与权限关系管理"
         db_table = "city_auth_role_permission_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -131,6 +136,7 @@ class CityAuthUserGroupRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "用户与组关系管理"
         db_table = "city_auth_user_group_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -149,6 +155,7 @@ class CityAuthUserRoleRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "用户与角色管理表"
         db_table = "city_auth_user_role_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -167,4 +174,5 @@ class CityAuthGroupRoleRelationship(models.Model):
         app_label = 'huntjob'
         verbose_name = "组与角色管理表"
         db_table = "city_auth_group_role_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name

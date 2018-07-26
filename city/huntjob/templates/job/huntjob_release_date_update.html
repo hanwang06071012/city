@@ -1,0 +1,40 @@
+<div class="">
+  <!--div class="box-body"-->
+  <!-- Horizontal Form -->
+  <!-- 表单开始 -->
+  <form class="form-horizontal" action="{% url 'huntjob:huntjob_release_date_update' pid %}" method="POST">{% csrf_token %}
+    <div class="box-body">
+      <!-- 发布日期名称 name -->
+      <div class="form-group">
+        <label for="group_name" class="col-sm-2 control-label">名称</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="release_date_name" name="name" value="{{ huntjob_release_date_obj.name }}"  placeholder="请输入创建发布日期名称" required oninvalid="setCustomValidity('发布日期名称不可为空');" oninput="setCustomValidity('');">
+        </div>
+      </div>
+      <!-- 最大数 -->
+      <div class="form-group">
+        <label for="group_name" class="col-sm-2 control-label">最大数</label>
+
+        <div class="col-sm-10">
+          <input type="number" min="1" class="form-control" id="release_date_value_max" name="value_max" value="{{ huntjob_release_date_obj.value_max }}" placeholder="请输入创建发布最大数" required oninvalid="setCustomValidity('最大数名称不可为空');" oninput="setCustomValidity('');">
+        </div>
+      </div>
+      <!-- 发布平台描述 -->
+      <div class="form-group">
+        <label for="release_date_description" class="col-sm-2 control-label">描述</label>
+
+        <div class="col-sm-10">
+          <textarea rows="10" class="col-sm-12" id="release_date_description" name="description"  placeholder="请输入发布日期描述">{{ huntjob_release_date_obj.description }}</textarea>
+        </div>
+      </div>
+    <!-- 提交按钮 -->
+    <div class="col-md-offset-5">
+      <button type="submit" class="btn btn-info">提交</button>
+      <button type="reset" class="btn btn-default">重置</button>
+    </div>
+    <!-- 提交按钮结束  -->
+  </form>
+  <!-- 表单结束 -->
+  <!-- /.box-body -->
+</div>

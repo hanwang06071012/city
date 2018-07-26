@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'huntjob:huntjob_company_industry_update' pid %}" method="POST">{% csrf_token %}
+      <!-- 行业名称 name -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="name" value="{{ huntjob_company_industry_obj.name }}" style="width:100%" data-options="label:'行业名称:',required:true">
+      </div>
+      <!-- 父节点 parent_node -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="parent_node" label="父节点" style="width:100%">
+          {% if huntjob_company_industry_obj.parent_node %}
+            <option value="0">顶级节点</option>
+          {% else %}
+            <option value="0" selected="true">顶级节点</option>
+          {% endif %}
+          {% for huntjob_company_industry_sig_obj in huntjob_company_industry_objs %}
+            {% ifequal  huntjob_company_industry_sig_obj.id huntjob_company_industry_obj.parent_node %}
+              <option value="{{ huntjob_company_industry_sig_obj.id }}" selected="true">{{ huntjob_company_industry_sig_obj.name }}</option>
+            {% else %}
+              <option value="{{ huntjob_company_industry_sig_obj.id }}">{{ huntjob_company_industry_sig_obj.name }}</option>
+            {% endifequal %}
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 描述 description -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" value="{{ huntjob_company_industry_obj.description }}" style="width:100%;height:60px" data-options="label:'描述:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

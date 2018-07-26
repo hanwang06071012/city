@@ -18,7 +18,7 @@
       <!-- 父节点 -->
       <div style="margin-bottom:20px">
         <select class="easyui-combobox" name="parent_node" label="父节点" style="width:100%">
-          {% if user_manager_permission_obj.id %}
+          {% if user_manager_permission_obj.parent_node %}
             <option value="0">顶级节点</option>
           {% else %}
             <option value="0" selected="true">顶级节点</option>

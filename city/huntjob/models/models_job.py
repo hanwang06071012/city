@@ -21,15 +21,18 @@ class ReleaseDate(models.Model):
     """职位发布日期模型."""
 
     name = models.CharField("发布日期名称", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
-        verbose_name = "月薪范围"
+        verbose_name = "发布日期"
         db_table = "release_date"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -37,15 +40,18 @@ class MonthlySalaryRange(models.Model):
     """职位月薪范围模型."""
 
     name = models.CharField("月薪范围", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "月薪范围"
         db_table = "monthly_salary_range"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -53,30 +59,37 @@ class WorkingYears(models.Model):
     """工作年限模型."""
 
     name = models.CharField("工作年限", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "工作年限"
         db_table = "working_years"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
-class Academic_Requirements(models.Model):
+class AcademicRequirements(models.Model):
     """学历要求模型."""
 
     name = models.CharField("学历要求", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "学历要求"
         db_table = "academic_requirements"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -84,15 +97,18 @@ class SalaryBenefits(models.Model):
     """薪资福利模型."""
 
     name = models.CharField("薪资福利", max_length=64, blank=False)
-    value_max = models.CharField("最大数", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "薪资福利"
         db_table = "salary_benefits"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -100,14 +116,18 @@ class JobType(models.Model):
     """工作类型模型."""
 
     name = models.CharField("工作类型", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "工作类型"
         db_table = "job_type"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -115,14 +135,18 @@ class JobFunctions(models.Model):
     """职业类别模型."""
 
     name = models.CharField("职业类别名称", max_length=64, blank=False)
+    value_max = models.IntegerField("最大数", default=0)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "职业类别"
         db_table = "job_functions"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -139,15 +163,18 @@ class JobInformation(models.Model):
     job_requirements = models.TextField("岗位要求", default=None)
     job_type = models.ForeignKey(JobType, related_name='job_type_job')
     working_years = models.ForeignKey(WorkingYears, related_name='working_years_job')
-    academic_requirements = models.ForeignKey(Academic_Requirements, related_name='academic_requirements_job')
+    academic_requirements = models.ForeignKey(AcademicRequirements, related_name='academic_requirements_job')
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "职位信息"
         db_table = "job_information"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -161,9 +188,12 @@ class JobSalaryBenefitsRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "工作与薪资福利关联模型"
         db_table = "job_salary_benefits_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name
 
 
@@ -177,7 +207,10 @@ class JobInformationFunctionsRelationship(models.Model):
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
+        """重写."""
+
         app_label = 'huntjob'
         verbose_name = "工作与类别关联模型"
         db_table = "job_information_functions_relationship"
+        ordering = ['-create_time']
         verbose_name_plural = verbose_name

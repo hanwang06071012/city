@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="box">
+    <div class="box-header">
+      <h1 class="box-title">{{ page_title }}</h1>
+      <a href="#" data-url="{% url 'huntjob:huntjob_company_industry_create' %}" class="btn btn-add bg-purple btn-sm pull-right">新增行业</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="well">
+        <form class="form-inline">
+          <div class="form-group">
+            <input class="form-control" name="name" type="text" value="{{ request.GET.name }}" placeholder="请输入名称">
+          </div>
+          <button id="search_btn" type="submit" class="btn btn-default">查询</button>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table id="" class="table table-bordered table-hover" role="grid">
+            <thead>
+              <tr role="row">
+                <th class="text-center">名称</th>
+                <th class="text-center">父节点</th>
+                <th class="text-center">描述</th>
+                <th class="text-center">创建日期</th>
+                <th class="text-center">更新时间</th>
+                <th class="text-center">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for huntjob_company_industry_obj in huntjob_company_industry_objs %}
+              <tr role="row" class="odd">
+                <td class="text-center">{{ huntjob_company_industry_obj.name }}</td>
+                <td class="text-center">{{ huntjob_company_industry_obj.description }}</td>
+                <td class="text-center">{{ huntjob_company_industry_obj.create_time }}</td>
+                <td class="text-center">{{ huntjob_company_industry_obj.update_time }}</td>
+                <td class="text-center">
+                    <div class="btn-group">
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_industry_update' huntjob_company_industry_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_company_industry_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_company_industry_detail' huntjob_company_industry_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                    </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+          {% include 'paginator.html' %}
+      </div>
+    </div>
+    <!-- /.box-body -->
+</div>
+{% endblock %}
+
+{% block footer_script %}
+<script>
+$(function(){
+  $("#menu_huntjob_career_management").addClass('active menu-open');
+  $("#menu_huntjob_company_management").addClass('active menu-open');
+  $("#menu_huntjob_company_management_industry_list").addClass('active');
+});
+// 行业添加
+$(".btn-add").on('click', function(e) {
+      e.preventDefault();
+      var url = $(this).attr('data-url');
+      ui.box({
+          title: '规模添加',
+          size: 'lg',
+          footer: false,
+          remote: url
+      });
+});
+
+// 行业详情
+$(".btn-detail").on('click', function(e) {
+      e.preventDefault();
+      var url = $(this).attr('data-url');
+      ui.box({
+          title: '规模详情展示',
+          size: 'lg',
+          footer: false,
+          remote: url
+      });
+});
+
+// 行业更新
+$(".btn-update").on('click', function(e) {
+      e.preventDefault();
+      var url = $(this).attr('data-url');
+      ui.box({
+          title: '规模更新',
+          size: 'lg',
+          footer: false,
+          remote: url
+      });
+});
+
+// 删除行业
+$(".btn-delete").on('click', function(e) {
+  e.preventDefault();
+  var url = $(this).attr('data-url');
+  var token = getCookie('csrftoken');
+  var dat_obj = JSON.stringify({'tablename': 'company_industry','types': 'delete_company_industry',})
+  ui.confirm('确定要进行该行业删除操作吗?', function() {
+      Net.post({
+          url: url,
+          data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},
+          reload: true,
+      });
+      location.reload();
+  });
+});
+</script>
+{% endblock %}

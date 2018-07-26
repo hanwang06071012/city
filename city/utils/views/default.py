@@ -24,6 +24,14 @@ from public_resource.models import (
     ReginoanlManagement,
     ChineseUniversities,
 )
+from huntjob.models import (
+    CompanyScale,
+    CompanyStyle,
+    CompanyIndustry,
+    CompanyInformation,
+    ReleaseDate,
+    MonthlySalaryRange,
+)
 
 
 class CommonViewsUpdateView(View):
@@ -84,6 +92,18 @@ class CommonViewsDeleteView(View):
             ReginoanlManagement.objects.filter(id=id).delete()
         elif (tablename == "chinese_universities") and (types == "delete_universities"):
             ChineseUniversities.objects.filter(id=id).delete()
+        elif (tablename == "company_scale") and (types == "delete_company_scale"):
+            CompanyScale.objects.filter(id=id).delete()
+        elif (tablename == "company_style") and (types == "delete_company_style"):
+            CompanyStyle.objects.filter(id=id).delete()
+        elif (tablename == "company_industry") and (types == "delete_company_industry"):
+            CompanyIndustry.objects.filter(id=id).delete()
+        elif (tablename == "company_information") and (types == "delete_company_information"):
+            CompanyInformation.objects.filter(id=id).delete()
+        elif (tablename == "release_date") and (types == "delete_release_date"):
+            ReleaseDate.objects.filter(id=id).delete()
+        elif (tablename == "monthly_salary_range") and (types == "delete_monthly_salary_range"):
+            MonthlySalaryRange.objects.filter(id=id).delete()
         else:
             pass
         return HttpResponse(json.dumps(ret))

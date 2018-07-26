@@ -28,42 +28,43 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li id="vm_home"><a href="/"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
-      <li class="treeview" id="menu_public_resource_management">
-        <a href="#"id="public_resource_management"><i class="fa fa-circle-o"></i> 职业生涯
+      <li class="treeview" id="menu_huntjob_career_management">
+        <a href="#"id="career_hutjob_management"><i class="fa fa-circle-o"></i> 职业生涯
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
             <li id="menu_public_resource_management_overview"><a href="{% url 'publicresourcedefault:public_resource_overview' %}"><i class="fa fa-circle-o"></i> 概况</a></li>
-            <li class="treeview" id="menu_public_resource_management">
-              <a href="#"id="public_resource_management"><i class="fa fa-circle-o"></i> 企业
+            <li class="treeview" id="menu_huntjob_company_management">
+              <a href="#"id="huntjob_company_management"><i class="fa fa-circle-o"></i> 企业
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li id="menu_public_resource_management_overview"><a href="#"><i class="fa fa-circle-o"></i>规模</a></li>
-                  <li id="menu_public_resource_management_reginoanl_list"><a href="#"><i class="fa fa-circle-o"></i>性质</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>行业</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>公司</a></li>
+                  <li id="menu_huntjob_company_management_scale_list"><a href="{% url 'huntjob:huntjob_company_scale_list' %}"><i class="fa fa-circle-o"></i>规模</a></li>
+                  <li id="menu_huntjob_company_management_style_list"><a href="{% url 'huntjob:huntjob_company_style_list' %}"><i class="fa fa-circle-o"></i>性质</a></li>
+                  <li id="menu_huntjob_company_management_industry_list"><a href="{% url 'huntjob:huntjob_company_industry_list' %}"><i class="fa fa-circle-o"></i>行业</a></li>
+                  <li id="menu_huntjob_company_management_information_list"><a href="{% url 'huntjob:huntjob_company_information_list' %}"><i class="fa fa-circle-o"></i>公司</a></li>
               </ul>
             </li>
-            <li class="treeview" id="menu_public_resource_management">
-              <a href="#"id="public_resource_management"><i class="fa fa-circle-o"></i> 职业
+            <li class="treeview" id="menu_huntjob_job_management">
+              <a href="#"id="huntjob_job_management"><i class="fa fa-circle-o"></i> 职业
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                  <li id="menu_public_resource_management_overview"><a href="#"><i class="fa fa-circle-o"></i>发布日期</a></li>
-                  <li id="menu_public_resource_management_reginoanl_list"><a href="#"><i class="fa fa-circle-o"></i>月薪范围</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>工作年限</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>学历要求</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>薪资福利</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>工作类型</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>职业类别</a></li>
-                  <li id="menu_public_resource_management_chinese_universites_list"><a href="#"><i class="fa fa-circle-o"></i>职位信息</a></li>
+                  <li id="menu_huntjob_job_management_overview"><a href="#"><i class="fa fa-circle-o"></i>概况</a></li>
+                  <li id="menu_huntjob_job_management_release_date_list"><a href="{% url 'huntjob:huntjob_release_date_list' %}"><i class="fa fa-circle-o"></i>发布日期</a></li>
+                  <li id="menu_huntjob_job_management_monthly_salary_range_list"><a href="{% url 'huntjob:huntjob_monthly_salary_range_list' %}"><i class="fa fa-circle-o"></i>月薪范围</a></li>
+                  <li id="menu_huntjob_job_management_working_years_list"><a href="{% url 'huntjob:huntjob_working_years_list' %}"><i class="fa fa-circle-o"></i>工作年限</a></li>
+                  <li id="menu_huntjob_job_management_academic_requirements_list"><a href="{% url 'huntjob:huntjob_academic_requirements_list' %}"><i class="fa fa-circle-o"></i>学历要求</a></li>
+                  <li id="menu_huntjob_job_management_salary_benefits_list"><a href="#"><i class="fa fa-circle-o"></i>薪资福利</a></li>
+                  <li id="menu_huntjob_job_management_job_type_list"><a href="#"><i class="fa fa-circle-o"></i>工作类型</a></li>
+                  <li id="menu_huntjob_job_management_job_functions_list"><a href="#"><i class="fa fa-circle-o"></i>职业类别</a></li>
+                  <li id="menu_huntjob_job_management_job_information_list"><a href="#"><i class="fa fa-circle-o"></i>职位信息</a></li>
               </ul>
             </li>
         </ul>

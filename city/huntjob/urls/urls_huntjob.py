@@ -19,7 +19,6 @@ from huntjob.views import HuntJobTestView
 from huntjob.views import (
     HuntJobIndexListView,
     JobInformationDetailView,
-    CompanyInformationDetailView,
     HuntJobCompanyScaleListView,
     HuntJobCompanyScaleCreateView,
     HuntJobCompanyScaleUpdateView,
@@ -42,7 +41,6 @@ urlpatterns = [
     url(r'^testview/', HuntJobTestView.as_view(), name='testview'),
     url(r'^index/', HuntJobIndexListView.as_view(), name='index'),
     url(r'^job/information/(?P<id>[0-9]+)/detail/', JobInformationDetailView.as_view(), name='job_information_detail'),
-    url(r'^company/information/(?P<id>[0-9]+)/detail/', CompanyInformationDetailView.as_view(), name='company_information_detail'),
     url(r'^company/scale/list/', HuntJobCompanyScaleListView.as_view(), name='huntjob_company_scale_list'),
     url(r'^company/scale/create/', HuntJobCompanyScaleCreateView.as_view(), name='huntjob_company_scale_create'),
     url(r'^company/scale/(?P<id>[0-9]+)/update/', HuntJobCompanyScaleUpdateView.as_view(), name='huntjob_company_scale_update'),

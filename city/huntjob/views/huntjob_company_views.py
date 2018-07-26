@@ -93,25 +93,6 @@ class JobInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
         return context
 
 
-class CompanyInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
-    """公司详情展示."""
-
-    model = CompanyInformation
-    page_title = '公司详情'
-    slug_field = 'id'
-    slug_url_kwarg = 'id'
-    template_name = "default/company_information_detail.html"
-    context_object_name = "company_information"
-
-    def get_context_data(self, **kwargs):
-        """重写上下文函数."""
-        context = super(CompanyInformationDetailView, self).get_context_data(**kwargs)
-        company_obj = context[self.context_object_name]
-        job_information_objs = JobInformation.objects.filter(company_information=company_obj)
-        context['job_information_objs'] = job_information_objs
-        return context
-
-
 class HuntJobCompanyScaleListView(LoginRequiredMixin, CommonMixin, ListView):
     """公司规模列表"""
 
@@ -493,7 +474,7 @@ class HuntJobCompanyInformationDetailView(LoginRequiredMixin, CommonMixin, Detai
     """公司详情展示."""
 
     model = CompanyInformation
-    page_title = '公司详情公司详情公司详情'
+    page_title = '公司详情'
     slug_field = 'id'
     slug_url_kwarg = 'id'
     template_name = "company/huntjob_company_information_detail.html"

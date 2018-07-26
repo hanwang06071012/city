@@ -23,7 +23,7 @@ sftp-config.json
 venv
 
 # uwsgi
-opeate.sh
+operate.sh
 uwsgi.ini
 uwsgi.pid
 Django.log

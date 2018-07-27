@@ -39,7 +39,7 @@
                 <td class="text-center">{{ huntjob_academic_requirements_obj.update_time }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                      <a href="#"><button type="button" data-url="# %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_academic_requirements_update' huntjob_academic_requirements_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
                       <a href="#"><button type="button" data-url="#" class="btn btn-delete btn-warning btn-xs">删除</button></a>
                       <a href="#"><button type="button" data-url="#"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>

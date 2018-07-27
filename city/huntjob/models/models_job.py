@@ -78,7 +78,7 @@ class AcademicRequirements(models.Model):
     """学历要求模型."""
 
     name = models.CharField("学历要求", max_length=64, blank=False)
-    value_max = models.IntegerField("最大数", default=0)
+    value_max = models.IntegerField("最大数", default=1)
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)

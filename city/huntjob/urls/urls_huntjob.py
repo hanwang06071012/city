@@ -48,6 +48,7 @@ from huntjob.views import (
     HuntJobWorkingYearsUpdateView,
     HuntJobAcademicRequirementsListView,
     HuntJobAcademicRequirementsCreateView,
+    HuntJobAcademicRequirementsUpdateView,
 )
 
 urlpatterns = [
@@ -83,5 +84,6 @@ urlpatterns = [
     url(r'^working/years/(?P<id>[0-9]+)/update/', HuntJobWorkingYearsUpdateView.as_view(), name='huntjob_working_years_update'),
     url(r'^academic/requirements/list/', HuntJobAcademicRequirementsListView.as_view(), name='huntjob_academic_requirements_list'),
     url(r'^academic/requirements/create/', HuntJobAcademicRequirementsCreateView.as_view(), name='huntjob_academic_requirements_create'),
+    url(r'^academic/requirements/(?P<id>[0-9]+)/update/', HuntJobAcademicRequirementsUpdateView.as_view(), name='huntjob_academic_requirements_update'),
 
 ]

@@ -338,3 +338,27 @@ class HuntJobAcademicRequirementsCreateView(LoginRequiredMixin, CommonMixin, Cre
         except Exception as e:
             _log.info(e)
         return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobAcademicRequirementsUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """学历要求更新."""
+
+    template_name = 'job/huntjob_academic_requirements_update.html'
+    page_title = '学历更新'
+    success_url = reverse_lazy('huntjob:huntjob_academic_requirements_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        huntjob_academic_requirements_obj = AcademicRequirements.objects.filter(id=pid).first()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            name = request.POST.get('name')
+            value_max = request.POST.get('value_max')
+            description = request.POST.get('description', '')
+            AcademicRequirements.objects.filter(id=pid).update(name=name, value_max=value_max, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)

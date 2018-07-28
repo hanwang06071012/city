@@ -31,6 +31,10 @@ from huntjob.models import (
     CompanyInformation,
     ReleaseDate,
     MonthlySalaryRange,
+    AcademicRequirements,
+    SalaryBenefits,
+    JobType,
+    JobFunctions
 )
 
 
@@ -72,6 +76,7 @@ class CommonViewsDeleteView(View):
 
     def post(self, request, *args, **kwargs):
         """重写接收处理函数."""
+        print("===========post start=======================")
         ret = {'state': 0, 'msg': '', 'code': 0}
         id = self.kwargs.get('id')
         dat = json.loads(request.POST.get('dat'))
@@ -104,6 +109,15 @@ class CommonViewsDeleteView(View):
             ReleaseDate.objects.filter(id=id).delete()
         elif (tablename == "monthly_salary_range") and (types == "delete_monthly_salary_range"):
             MonthlySalaryRange.objects.filter(id=id).delete()
+        elif (tablename == "academic_requirements") and (types == "delete_academic_requirements"):
+            AcademicRequirements.objects.filter(id=id).delete()
+        elif (tablename == "salary_benefits") and (types == "delete_salary_benefits"):
+            SalaryBenefits.objects.filter(id=id).delete()
+        elif (tablename == "job_type") and (types == "delete_job_type"):
+            JobType.objects.filter(id=id).delete()
+        elif (tablename == "job_functions") and (types == "delete_job_functions"):
+            JobFunctions.objects.filter(id=id).delete()
         else:
             pass
+        print("===========post end=======================")
         return HttpResponse(json.dumps(ret))

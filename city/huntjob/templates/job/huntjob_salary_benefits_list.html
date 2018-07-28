@@ -3,7 +3,7 @@
 <div class="box">
     <div class="box-header">
       <h1 class="box-title">{{ page_title }}</h1>
-      <a href="#" data-url="{% url 'huntjob:huntjob_working_years_create' %}" class="btn btn-add bg-purple btn-sm pull-right">工作年限添加</a>
+      <a href="#" data-url="{% url 'huntjob:huntjob_salary_benefits_create' %}" class="btn btn-add bg-purple btn-sm pull-right">薪资福利添加</a>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -30,18 +30,18 @@
               </tr>
             </thead>
             <tbody>
-              {% for huntjob_working_years_obj in huntjob_working_years_objs %}
+              {% for huntjob_salary_benefits_obj in huntjob_salary_benefits_objs %}
               <tr role="row" class="odd">
-                <td class="text-center">{{ huntjob_working_years_obj.name }}</td>
-                <td class="text-center">{{ huntjob_working_years_obj.value_max }}</td>
-                <td class="text-center">{{ huntjob_working_years_obj.description }}</td>
-                <td class="text-center">{{ huntjob_working_years_obj.create_time }}</td>
-                <td class="text-center">{{ huntjob_working_years_obj.update_time }}</td>
+                <td class="text-center">{{ huntjob_salary_benefits_obj.name }}</td>
+                <td class="text-center">{{ huntjob_salary_benefits_obj.value_max }}</td>
+                <td class="text-center">{{ huntjob_salary_benefits_obj.description }}</td>
+                <td class="text-center">{{ huntjob_salary_benefits_obj.create_time }}</td>
+                <td class="text-center">{{ huntjob_salary_benefits_obj.update_time }}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_working_years_update' huntjob_working_years_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_working_years_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
-                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_working_years_detail' huntjob_working_years_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_salary_benefits_update' huntjob_salary_benefits_obj.id %}"  class="btn btn-update btn-warning btn-xs">编辑</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'utilsdefault:common_views_delete' huntjob_salary_benefits_obj.id %}" class="btn btn-delete btn-warning btn-xs">删除</button></a>
+                      <a href="#"><button type="button" data-url="{% url 'huntjob:huntjob_salary_benefits_detail' huntjob_salary_benefits_obj.id %}"  class="btn btn-detail btn-info btn-xs">详情</button></a>
                     </div>
                 </td>
               </tr>
@@ -65,51 +65,51 @@
 $(function(){
   $("#menu_huntjob_career_management").addClass('active menu-open');
   $("#menu_huntjob_job_management").addClass('active menu-open');
-  $("#menu_huntjob_job_management_working_years_list").addClass('active');
+  $("#menu_huntjob_job_management_salary_benefits_list").addClass('active');
 });
-// 工作年限添加
+// 薪资福利添加
 $(".btn-add").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '工作年限添加',
+          title: '薪资福利添加',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 工作年限详情
+// 薪资福利信息详情
 $(".btn-detail").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '工作年限展示',
+          title: '薪资福利信息展示',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 工作年限更新
+// 薪资福利更新
 $(".btn-update").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('data-url');
       ui.box({
-          title: '工作年限更新',
+          title: '薪资福利更新',
           size: 'lg',
           footer: false,
           remote: url
       });
 });
 
-// 删除工作年限
+// 删除薪资福利
 $(".btn-delete").on('click', function(e) {
   e.preventDefault();
   var url = $(this).attr('data-url');
   var token = getCookie('csrftoken');
-  var dat_obj = JSON.stringify({'tablename': 'monthly_salary_range','types': 'delete_monthly_salary_range',})
-  ui.confirm('确定要进行该工作年限删除操作吗?', function() {
+  var dat_obj = JSON.stringify({'tablename': 'salary_benefits','types': 'delete_salary_benefits',})
+  ui.confirm('确定要进行该薪资福利删除操作吗?', function() {
       Net.post({
           url: url,
           data: {'csrfmiddlewaretoken': token, 'dat': dat_obj,},

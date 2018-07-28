@@ -1,0 +1,40 @@
+<div class="">
+  <!--div class="box-body"-->
+  <!-- Horizontal Form -->
+  <!-- 表单开始 -->
+  <form class="form-horizontal" action="{% url 'huntjob:huntjob_salary_benefits_update' pid %}" method="POST">{% csrf_token %}
+    <div class="box-body">
+      <!-- 薪资福利名称 name -->
+      <div class="form-group">
+        <label for="salary_benefits_name" class="col-sm-2 control-label">名称</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="salary_benefits_name" name="name" value="{{ huntjob_salary_benefits_obj.name }}"  placeholder="请输入创建薪资福利名称" required oninvalid="setCustomValidity('薪资福利名称不可为空');" oninput="setCustomValidity('');">
+        </div>
+      </div>
+      <!-- 最大数 -->
+      <div class="form-group">
+        <label for="salary_benefits_value_max" class="col-sm-2 control-label">最大数</label>
+
+        <div class="col-sm-10">
+          <input type="number" min="1" class="form-control" id="salary_benefits_value_max" name="value_max" value="{{ huntjob_salary_benefits_obj.value_max }}" placeholder="请输入创建最大数" required oninvalid="setCustomValidity('最大数名称不可为空');" oninput="setCustomValidity('');">
+        </div>
+      </div>
+      <!-- 描述 -->
+      <div class="form-group">
+        <label for="salary_benefits_description" class="col-sm-2 control-label">描述</label>
+
+        <div class="col-sm-10">
+          <textarea rows="10" class="col-sm-12" id="salary_benefits_description" name="description"  placeholder="请输入薪资福利描述">{{ huntjob_salary_benefits_obj.description }}</textarea>
+        </div>
+      </div>
+    <!-- 提交按钮 -->
+    <div class="col-md-offset-5">
+      <button type="submit" class="btn btn-info">提交</button>
+      <button type="reset" class="btn btn-default">重置</button>
+    </div>
+    <!-- 提交按钮结束  -->
+  </form>
+  <!-- 表单结束 -->
+  <!-- /.box-body -->
+</div>

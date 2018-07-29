@@ -33,6 +33,8 @@ from huntjob.models import (
     SalaryBenefits,
     JobType,
     JobFunctions,
+    JobInformation,
+    CompanyInformation,
 )
 from huntjob.forms import (
     ReleaseDateCreateForm,
@@ -42,6 +44,7 @@ from huntjob.forms import (
     SalaryBenefitsCreateForm,
     JobTypeCreateForm,
     JobFunctionsCreateForm,
+    JobInformationCreateForm,
 )
 from django.core.urlresolvers import reverse_lazy
 import logging
@@ -610,3 +613,133 @@ class HuntJobJobFunctionsDetailView(LoginRequiredMixin, CommonMixin, DetailView)
     slug_url_kwarg = 'id'
     template_name = "job/huntjob_job_functions_detail.html"
     context_object_name = "huntjob_job_functions_obj"
+
+
+class HuntJobJobInformationListView(LoginRequiredMixin, CommonMixin, ListView):
+    """职位信息列表"""
+
+    model = JobInformation
+    template_name = "job/huntjob_job_information_list.html"
+    page_title = "职位信息列表"
+    paginate_by = '30'
+    context_object_name = 'huntjob_job_information_objs'
+
+    def get_queryset(self):
+        """重写."""
+        name = self.request.GET.get('name')
+
+        huntjob_job_information_objs = JobInformation.objects
+        if name:
+            huntjob_job_information_objs = huntjob_job_information_objs.filter(Q(name__contains=name) | Q(company_information__contains=name))
+        return huntjob_job_information_objs.all()
+
+    def get_context_data(self, **kwargs):
+        """重写."""
+        context = super(HuntJobJobInformationListView, self).get_context_data(**kwargs)
+        context['company_information_objs'] = CompanyInformation.objects.all()
+        context['monthly_salary_range_objs'] = MonthlySalaryRange.objects.all()
+        context['job_type_objs'] = JobType.objects.all()
+        context['working_years_objs'] = WorkingYears.objects.all()
+        context['academic_requirements_objs'] = AcademicRequirements.objects.all()
+        return context
+
+
+class HuntJobJobInformationCreateView(LoginRequiredMixin, CommonMixin, CreateView):
+    """职位信息创建."""
+
+    template_name = 'job/huntjob_job_information_create.html'
+    page_title = '职位信息创建'
+    form_class = JobFunctionsCreateForm
+    success_url = reverse_lazy('huntjob:huntjob_job_information_list')
+
+    def get_form_kwargs(self):
+        """重写."""
+        kwargs = super(HuntJobJobInformationCreateView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        """重写."""
+        context = super(HuntJobJobInformationCreateView, self).get_context_data(**kwargs)
+        context['company_information_objs'] = CompanyInformation.objects.all()
+        context['monthly_salary_range_objs'] = MonthlySalaryRange.objects.all()
+        context['job_type_objs'] = JobType.objects.all()
+        context['working_years_objs'] = WorkingYears.objects.all()
+        context['academic_requirements_objs'] = AcademicRequirements.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        try:
+            name = request.POST.get('name')
+            recruitment_number = request.POST.get('recruitment_number')
+            company_information = request.POST.get('company_information')
+            company_information = CompanyInformation.objects.filter(id=company_information).first()
+            work_place = request.POST.get('work_place')
+            monthly_salary_range = request.POST.get('monthly_salary_range')
+            monthly_salary_range = MonthlySalaryRange.objects.filter(id=monthly_salary_range).first()
+            job_responsibilities = request.POST.get('job_responsibilities')
+            job_requirements = request.POST.get('job_requirements')
+            job_type = request.POST.get('job_type')
+            job_type = JobType.objects.filter(id=job_type).first()
+            working_years = request.POST.get('working_years')
+            working_years = WorkingYears.objects.filter(id=working_years).first()
+            academic_requirements = request.POST.get('academic_requirements')
+            academic_requirements = AcademicRequirements.objects.filter(id=academic_requirements).first()
+            description = request.POST.get('description')
+            JobInformation.objects.create(name=name, recruitment_number=recruitment_number, company_information=company_information, work_place=work_place, monthly_salary_range=monthly_salary_range, job_responsibilities=job_responsibilities, job_requirements=job_requirements, job_type=job_type, working_years=working_years, academic_requirements=academic_requirements, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobJobInformationUpdateView(LoginRequiredMixin, CommonMixin, View):
+    """职位信息更新."""
+
+    template_name = 'job/huntjob_job_information_update.html'
+    page_title = '职位信息更新'
+    success_url = reverse_lazy('huntjob:huntjob_job_information_list')
+
+    def get(self, request, *args, **kwargs):
+        pid = self.kwargs.get('id')
+        huntjob_job_information_obj = JobInformation.objects.filter(id=pid).first()
+        company_information_objs = CompanyInformation.objects.all()
+        monthly_salary_range_objs = MonthlySalaryRange.objects.all()
+        job_type_objs = JobType.objects.all()
+        working_years_objs = WorkingYears.objects.all()
+        academic_requirements_objs = AcademicRequirements.objects.all()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        try:
+            pid = self.kwargs.get('id')
+            name = request.POST.get('name')
+            recruitment_number = request.POST.get('recruitment_number')
+            company_information = request.POST.get('company_information')
+            company_information = CompanyInformation.objects.filter(id=company_information).first()
+            work_place = request.POST.get('work_place')
+            monthly_salary_range = request.POST.get('monthly_salary_range')
+            monthly_salary_range = MonthlySalaryRange.objects.filter(id=monthly_salary_range).first()
+            job_responsibilities = request.POST.get('job_responsibilities')
+            job_requirements = request.POST.get('job_requirements')
+            job_type = request.POST.get('job_type')
+            job_type = JobType.objects.filter(id=job_type).first()
+            working_years = request.POST.get('working_years')
+            working_years = WorkingYears.objects.filter(id=working_years).first()
+            academic_requirements = request.POST.get('academic_requirements')
+            academic_requirements = AcademicRequirements.objects.filter(id=academic_requirements).first()
+            description = request.POST.get('description')
+            JobInformation.objects.filter(id=pid).update(name=name, recruitment_number=recruitment_number, company_information=company_information, work_place=work_place, monthly_salary_range=monthly_salary_range, job_responsibilities=job_responsibilities, job_requirements=job_requirements, job_type=job_type, working_years=working_years, academic_requirements=academic_requirements, description=description)
+        except Exception as e:
+            _log.info(e)
+        return HttpResponseRedirect(self.success_url)
+
+
+class HuntJobJobInformationDetailView(LoginRequiredMixin, CommonMixin, DetailView):
+    """职业类别详情展示."""
+
+    model = JobInformation
+    page_title = '职位信息详情'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = "job/huntjob_job_information_detail.html"
+    context_object_name = "huntjob_job_information_obj"

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  {% include "header_css.html" %}
+</head>
+<body>
+  <div class="easyui-panel" title="" style="width:100%;padding:30px 60px;">
+    <form id="ff" action="{% url 'huntjob:huntjob_job_information_create' %}" method="POST">{% csrf_token %}
+      <!-- 职位名称 name -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="name" style="width:100%" data-options="label:'职位名称:',required:true">
+      </div>
+      <!-- 招聘人数 recruitment_number -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="recruitment_number" style="width:100%" data-options="label:'招聘人数:',required:true">
+      </div>
+      <!-- 公司信息 company_information -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="company_information" label="公司信息:" style="width:100%">
+          {% for company_information_obj in company_information_objs %}
+            <option value="{{ company_information_obj.id }}">{{ company_information_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 工作地点 work_place -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="work_place" style="width:100%" data-options="label:'工作地点:',required:true">
+      </div>
+      <!-- 薪资范围 monthly_salary_range -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="monthly_salary_range" label="薪资范围:" style="width:100%">
+          {% for monthly_salary_range_obj in monthly_salary_range_objs %}
+            <option value="{{ monthly_salary_range_obj.id }}">{{ monthly_salary_range_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 工作类型 job_type -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="job_type" label="工作类型:" style="width:100%">
+          {% for job_type_obj in job_type_objs %}
+            <option value="{{ job_type_obj.id }}">{{ job_type_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 工作年限 working_years -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="working_years" label="工作年限:" style="width:100%">
+          {% for working_years_obj in working_years_objs %}
+            <option value="{{ working_years_obj.id }}">{{ working_years_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 学历要求 academic_requirements -->
+      <div style="margin-bottom:20px">
+        <select class="easyui-combobox" name="academic_requirements" label="学历要求:" style="width:100%">
+          {% for academic_requirements_obj in academic_requirements_objs %}
+            <option value="{{ academic_requirements_obj.id }}">{{ academic_requirements_obj.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- 岗位职责 job_responsibilities -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="job_responsibilities" style="width:100%;height:60px" data-options="label:'岗位职责:',multiline:true">
+      </div>
+      <!-- 岗位要求 job_requirements -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="job_requirements" style="width:100%;height:60px" data-options="label:'岗位要求:',multiline:true">
+      </div>
+      <!-- 描述 description -->
+      <div style="margin-bottom:20px">
+        <input class="easyui-textbox" name="description" style="width:100%;height:60px" data-options="label:'描述:',multiline:true">
+      </div>
+      <div style="text-align:center;padding:5px 0">
+        <button class="easyui-linkbutton" type="submit" style="width:80px">Submit</button>
+        <button class="easyui-linkbutton" type="reset" style="width:80px">Clear</button>
+      </div>
+    </form>
+  </div>
+</body>
+ {% include "footer_js.html" %}
+</html>

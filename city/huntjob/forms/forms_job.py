@@ -23,6 +23,7 @@ from huntjob.models import (
     SalaryBenefits,
     JobType,
     JobFunctions,
+    JobInformation,
 )
 
 
@@ -129,3 +130,18 @@ class JobFunctionsCreateForm(forms.ModelForm):
 
         model = JobFunctions
         fields = ('name', 'value_max', 'description')
+
+
+class JobInformationCreateForm(forms.ModelForm):
+    """职位信息创建表单."""
+
+    def __init__(self, request, *args, **kwargs):
+        """初始化函数."""
+        super(JobInformationCreateForm, self).__init__(*args, **kwargs)
+        self.request_ = request
+
+    class Meta:
+        """定义规则字段."""
+
+        model = JobInformation
+        fields = ('name', 'recruitment_number', 'company_information', 'work_place', 'monthly_salary_range', 'job_responsibilities', 'job_requirements', 'job_type', 'working_years', 'academic_requirements', 'description')

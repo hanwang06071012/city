@@ -1,0 +1,82 @@
+<div class="">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-bordered table-hover" role="grid">
+          <thead>
+              <th class="text-center">项目</th>
+              <th class="text-center">数据</th>
+          </thead>
+          <tbody>
+            <!-- 职位名称 name -->
+            <tr>
+                <td class="text-center" style="width:200px"> 职位名称 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.name }}</td>
+            </tr>
+            <!-- 招聘人数 recruitment_number -->
+            <tr>
+                <td class="text-center" style="width:200px"> 招聘人数 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.recruitment_number }}</td>
+            </tr>
+            <!-- 公司信息 company_information -->
+            <tr>
+                <td class="text-center" style="width:200px"> 公司信息 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.company_information.name }}</td>
+            </tr>
+            <!-- 工作地点 work_place -->
+            <tr>
+                <td class="text-center" style="width:200px"> 工作地点 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.work_place }}</td>
+            </tr>
+            <!-- 薪资范围 monthly_salary_range -->
+            <tr>
+                <td class="text-center" style="width:200px"> 薪资范围 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.monthly_salary_range.name }}</td>
+            </tr>
+            <!-- 岗位职责 job_responsibilities -->
+            <tr>
+                <td class="text-center" style="width:200px"> 岗位职责 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.job_responsibilities }}</td>
+            </tr>
+            <!-- 岗位要求 job_requirements -->
+            <tr>
+                <td class="text-center" style="width:200px"> 岗位要求 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.job_requirements }}</td>
+            </tr>
+            <!-- 工作类型 job_type -->
+            <tr>
+                <td class="text-center" style="width:200px"> 工作类型 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.job_type.name }}</td>
+            </tr>
+            <!-- 工作年限 working_years -->
+            <tr>
+                <td class="text-center" style="width:200px"> 工作年限 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.working_years.name }}</td>
+            </tr>
+            <!-- 学历要求 academic_requirements -->
+            <tr>
+                <td class="text-center" style="width:200px"> 学历要求 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.academic_requirements.name }}</td>
+            </tr>
+            <!-- 描述 description-->
+            <tr>
+                <td class="text-center" style="width:200px"> 描述 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.description }}</td>
+            </tr>
+            <!-- 创建时间 create_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 创建时间 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.create_time }}</td>
+            </tr>
+            <!-- 更新时间 update_time-->
+            <tr>
+                <td class="text-center" style="width:200px"> 更新时间 </td>
+                <td class="text-center">{{ huntjob_job_information_obj.update_time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

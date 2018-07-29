@@ -155,15 +155,14 @@ class JobInformation(models.Model):
 
     name = models.CharField("职位名称", max_length=64, blank=False)
     recruitment_number = models.IntegerField("招聘人数")
-    company_information = models.ForeignKey(CompanyInformation, related_name='company_information_job')
+    company_information = models.ForeignKey(CompanyInformation, related_name='company_information_job')  # 公司信息
     work_place = models.CharField("工作地点", max_length=64, blank=False)
-    monthly_salary_range = models.ForeignKey(MonthlySalaryRange, related_name='Monthly_salary_range_job')
-    release_date = models.ForeignKey(ReleaseDate, related_name='release_date_job')
+    monthly_salary_range = models.ForeignKey(MonthlySalaryRange, related_name='Monthly_salary_range_job')  # 薪资范围
     job_responsibilities = models.TextField("岗位职责", default=None)
     job_requirements = models.TextField("岗位要求", default=None)
-    job_type = models.ForeignKey(JobType, related_name='job_type_job')
-    working_years = models.ForeignKey(WorkingYears, related_name='working_years_job')
-    academic_requirements = models.ForeignKey(AcademicRequirements, related_name='academic_requirements_job')
+    job_type = models.ForeignKey(JobType, related_name='job_type_job')  # 工作类型
+    working_years = models.ForeignKey(WorkingYears, related_name='working_years_job')  # 工作年限
+    academic_requirements = models.ForeignKey(AcademicRequirements, related_name='academic_requirements_job')  # 学历要求
     description = models.TextField("备注", default=None)
     create_time = models.DateTimeField("创建日期", default=timezone.now)
     update_time = models.DateTimeField("更新日期", auto_now=True)

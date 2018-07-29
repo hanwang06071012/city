@@ -18,7 +18,6 @@ from django.contrib import admin
 from huntjob.views import HuntJobTestView
 from huntjob.views import (
     HuntJobIndexListView,
-    JobInformationDetailView,
     HuntJobCompanyScaleListView,
     HuntJobCompanyScaleCreateView,
     HuntJobCompanyScaleUpdateView,
@@ -63,12 +62,15 @@ from huntjob.views import (
     HuntJobJobFunctionsCreateView,
     HuntJobJobFunctionsUpdateView,
     HuntJobJobFunctionsDetailView,
+    HuntJobJobInformationListView,
+    HuntJobJobInformationCreateView,
+    HuntJobJobInformationUpdateView,
+    HuntJobJobInformationDetailView,
 )
 
 urlpatterns = [
     url(r'^testview/', HuntJobTestView.as_view(), name='testview'),
     url(r'^index/', HuntJobIndexListView.as_view(), name='index'),
-    url(r'^job/information/(?P<id>[0-9]+)/detail/', JobInformationDetailView.as_view(), name='job_information_detail'),
     url(r'^company/scale/list/', HuntJobCompanyScaleListView.as_view(), name='huntjob_company_scale_list'),
     url(r'^company/scale/create/', HuntJobCompanyScaleCreateView.as_view(), name='huntjob_company_scale_create'),
     url(r'^company/scale/(?P<id>[0-9]+)/update/', HuntJobCompanyScaleUpdateView.as_view(), name='huntjob_company_scale_update'),
@@ -113,5 +115,9 @@ urlpatterns = [
     url(r'^job/functions/create/', HuntJobJobFunctionsCreateView.as_view(), name='huntjob_job_functions_create'),
     url(r'^job/functions/(?P<id>[0-9]+)/update/', HuntJobJobFunctionsUpdateView.as_view(), name='huntjob_job_functions_update'),
     url(r'^job/functions/(?P<id>[0-9]+)/detail/', HuntJobJobFunctionsDetailView.as_view(), name='huntjob_job_functions_detail'),
+    url(r'^job/information/list/', HuntJobJobInformationListView.as_view(), name='huntjob_job_information_list'),
+    url(r'^job/information/create/', HuntJobJobInformationCreateView.as_view(), name='huntjob_job_information_create'),
+    url(r'^job/information/(?P<id>[0-9]+)/update/', HuntJobJobInformationUpdateView.as_view(), name='huntjob_job_information_update'),
+    url(r'^job/information/(?P<id>[0-9]+)/detail/', HuntJobJobInformationDetailView.as_view(), name='huntjob_job_information_detail'),
 
 ]

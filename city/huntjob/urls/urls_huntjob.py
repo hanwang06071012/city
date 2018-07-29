@@ -18,6 +18,7 @@ from django.contrib import admin
 from huntjob.views import HuntJobTestView
 from huntjob.views import (
     HuntJobIndexListView,
+    HuntJobOverView,
     HuntJobCompanyScaleListView,
     HuntJobCompanyScaleCreateView,
     HuntJobCompanyScaleUpdateView,
@@ -71,6 +72,7 @@ from huntjob.views import (
 urlpatterns = [
     url(r'^testview/', HuntJobTestView.as_view(), name='testview'),
     url(r'^index/', HuntJobIndexListView.as_view(), name='index'),
+    url(r'^over/view/', HuntJobOverView.as_view(), name='huntjob_overview'),
     url(r'^company/scale/list/', HuntJobCompanyScaleListView.as_view(), name='huntjob_company_scale_list'),
     url(r'^company/scale/create/', HuntJobCompanyScaleCreateView.as_view(), name='huntjob_company_scale_create'),
     url(r'^company/scale/(?P<id>[0-9]+)/update/', HuntJobCompanyScaleUpdateView.as_view(), name='huntjob_company_scale_update'),

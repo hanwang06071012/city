@@ -16,3 +16,4 @@
 from .huntjob_test_views import *
 from .huntjob_company_views import *
 from .huntjob_job_views import *
+from .huntjob_default_views import *

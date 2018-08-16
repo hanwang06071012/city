@@ -13,3 +13,4 @@
 # Create your models here.
 
 from .views_default import *
+from .views_api import *

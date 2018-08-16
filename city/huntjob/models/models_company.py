@@ -22,7 +22,7 @@ class CompanyScale(models.Model):
     name = models.CharField("规模名称", max_length=64, blank=False)
     value_max = models.CharField("最大数", max_length=64, blank=False)
     description = models.TextField("备注", default=None)
-    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    create_time = models.DateTimeField("创建日期", auto_now_add=True)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
@@ -40,7 +40,7 @@ class CompanyStyle(models.Model):
 
     name = models.CharField("公司性质", max_length=64, blank=False)
     description = models.TextField("备注", default=None)
-    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    create_time = models.DateTimeField("创建日期", auto_now_add=True)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
@@ -59,7 +59,7 @@ class CompanyIndustry(models.Model):
     name = models.CharField("行业名称", max_length=64, blank=False)
     parent_node = models.IntegerField("父节点")
     description = models.TextField("备注", default=None)
-    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    create_time = models.DateTimeField("创建日期", auto_now_add=True)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:
@@ -84,7 +84,7 @@ class CompanyInformation(models.Model):
     introduction = models.TextField("公司简介", default=None)
     description = models.TextField("备注", default=None)
     established = models.DateTimeField("成立时间", default=None)
-    create_time = models.DateTimeField("创建日期", default=timezone.now)
+    create_time = models.DateTimeField("创建日期", auto_now_add=True)
     update_time = models.DateTimeField("更新日期", auto_now=True)
 
     class Meta:

@@ -1,0 +1,21 @@
+{% extends "base_front.html" %}
+
+{% block content %}
+<div class="" style="border: red solid 1px;">
+  <div class="row">
+    <div class="col-sm-6">
+        <div class="container" style="border: red solid 1px;">
+            <h1>菜鸟教程</h1> 
+            <p>学的不仅是技术，更是梦想！！！</p>
+        </div>
+    </div>
+    <div class="col-sm-6" style="border: red solid 1px;">
+        <div class="container">
+            <h1>菜鸟教程</h1> 
+            <p>学的不仅是技术，更是梦想！！！</p>
+        </div>
+    </div>
+  </div>
+</div>
+<a href="{% url 'huntjobfront:huntjob_front_index_list' %}">工作机会</a>
+{% endblock %}

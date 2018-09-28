@@ -27,3 +27,13 @@ class HomeView(View):
     def get(self, request, *args, **kwargs):
         """测试代码"""
         return render(request, self.template_name, locals())
+
+
+class DefaultView(View):
+    """首页"""
+
+    template_name = "default.html"
+
+    def get(self, request, *args, **kwargs):
+        """测试代码"""
+        return render(request, self.template_name, locals())

@@ -1,0 +1,10 @@
+
+/* 背景图片 */
+.bg {
+       background:url('../img/login_bg2.jpg') no-repeat center;
+       background-size:100%;
+}
+
+.zero_margin_bottom {
+       margin-bottom 0px;
+}

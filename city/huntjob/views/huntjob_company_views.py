@@ -155,14 +155,22 @@ class HuntJobCompanyScaleUpdateView(LoginRequiredMixin, CommonMixin, View):
         return render(request, self.template_name, locals())
 
     def post(self, request, *args, **kwargs):
+        print("==========post start===================")
         try:
             pid = self.kwargs.get('id')
             name = request.POST.get('name')
             value_max = request.POST.get('value_max')
             description = request.POST.get('description', '')
-            CompanyScale.objects.filter(id=pid).update(name=name, value_max=value_max, description=description)
+            # CompanyScale.objects.filter(id=pid).update(name=name, value_max=value_max, description=description)
+            company_scale_obj = CompanyScale.objects.filter(id=pid).first()
+            company_scale_obj.name = name
+            company_scale_obj.value_max = value_max
+            company_scale_obj.description = description
+            company_scale_obj.save()
         except Exception as e:
+            print(e)
             _log.info(e)
+        print("===========post end=========================")
         return HttpResponseRedirect(self.success_url)
 
 

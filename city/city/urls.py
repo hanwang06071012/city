@@ -14,14 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
-from .views import HomeView
+# from django.contrib import admin
+from .views import HomeView, DefaultView
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^$', DefaultView.as_view(), name='default'),
+    url(r'^home$', HomeView.as_view(), name='home'),
     url(r'^huntjob/', include("huntjob.urls.urls_huntjob", namespace="huntjob")),
+    url(r'^huntjobfront/', include("huntjob.urls.urls_huntjob_front", namespace="huntjobfront")),
     url(r'^manager/', include("user_manager.urls.urls_default", namespace="usermanagerdefault")),
     url(r'^utils/', include("utils.urls.urls_default", namespace="utilsdefault")),
-    url(r'^pulicresource/', include("public_resource.urls.urls_default", namespace="publicresourcedefault")),
+    url(r'^v1/api/public/resource', include("public_resource.urls.urls_api", namespace="publicresourceapi")),
 ]

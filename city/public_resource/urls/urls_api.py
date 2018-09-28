@@ -16,7 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from public_resource.views import (
     PublicResourceReginoanlManagementView,
+    PublicResourceChineseUniversitiesView,
 )
 urlpatterns = [
-    url(r'^reginoanls$', PublicResourceReginoanlManagementView.as_view(), name='public_resource_reginoanls'),
+    url(r'^/reginoanls$', PublicResourceReginoanlManagementView.as_view(), name='public_resource_reginoanls'),
+    url(r'^/reginoanls/(?P<pk>\d+)$', PublicResourceReginoanlManagementView.as_view(), name='public_resource_reginoanl'),
+    url(r'^/chinese/universites$', PublicResourceChineseUniversitiesView.as_view(), name='public_resource_chinese_universities'),
+    url(r'^/chinese/universites/(?P<pk>\d+)$', PublicResourceChineseUniversitiesView.as_view(), name='public_resource_chinese_university'),
+
 ]

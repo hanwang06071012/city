@@ -25,6 +25,5 @@ urlpatterns = [
     url(r'^huntjobfront/', include("huntjob.urls.urls_huntjob_front", namespace="huntjobfront")),
     url(r'^manager/', include("user_manager.urls.urls_default", namespace="usermanagerdefault")),
     url(r'^utils/', include("utils.urls.urls_default", namespace="utilsdefault")),
-    url(r'^pulicresource/', include("public_resource.urls.urls_default", namespace="publicresourcedefault")),
-    url(r'^v1/api/pulic/resource/', include("public_resource.urls.urls_api", namespace="publicresourceapi")),
+    url(r'^v1/api/public/resource', include("public_resource.urls.urls_api", namespace="publicresourceapi")),
 ]
